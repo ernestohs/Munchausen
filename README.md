@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ernestohs/Munchausen.svg)](https://travis-ci.org/ernestohs/Munchausen)
+
 # Munchausen
 Data Generation Tool
 
