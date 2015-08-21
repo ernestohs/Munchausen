@@ -5,5 +5,6 @@ Data Generation Tool
 
 The main goal is to have a fast, simple and fluent framework for data generation.
 
-    Generator<Person>.Generate(100); // this will generate a collection with 100 objects of type Person
+    List<Person> persons = Lie<Person>.Generate(100); // this will generate a collection with 100 objects of type Person.
+    Person JustOne = Lie<Person>.Generate(); // this will generate only one person.
 
