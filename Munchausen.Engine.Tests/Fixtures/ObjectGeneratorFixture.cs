@@ -8,7 +8,7 @@ namespace Munchausen.Engine.Tests.Fixtures
     public class ObjectGeneratorFixture
     {
         [Test]
-        public void Generator()
+        public void GeneratorCanonical()
         {
             Object newInstance = new ObjectGenerator<Person>().Generate();
 

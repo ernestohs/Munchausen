@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 
 namespace Munchausen.Engine
 {
@@ -6,7 +6,7 @@ namespace Munchausen.Engine
     {
         public T Generate()
         {
-            return new T();
+            return Activator.CreateInstance<T>();
         }
     }
 }

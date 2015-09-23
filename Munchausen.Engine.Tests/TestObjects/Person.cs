@@ -2,32 +2,14 @@
 {
     public class Person
     {
-        private string myName = "N/A";
-        private int myAge = 0;
-
-        public string Name
+        public Person()
         {
-            get
-            {
-                return myName;
-            }
-            set
-            {
-                myName = value;
-            }
+            Age = 0;
         }
 
-        public int Age
-        {
-            get
-            {
-                return myAge;
-            }
-            set
-            {
-                myAge = value;
-            }
-        }
+        public string Name { get; set; }
+
+        public int Age { get; set; }
 
         public override string ToString()
         {
