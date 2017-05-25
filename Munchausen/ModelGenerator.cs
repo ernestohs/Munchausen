@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Munchausen
 {
-    public class ModelGenerator<T>
+    [SuppressMessage("ReSharper", "ConvertIfStatementToReturnStatement")]
+    public class ModelGenerator<T> : ValuesGenerator<T>
     {
-        private T _target;
-        private readonly long _index;
         private readonly List<Func<T, T>> _functions = new List<Func<T, T>>();
         private bool _executed = false;
-
-        private static readonly Dictionary<Type, Func<long, object>> TypeHandlers = new Dictionary<Type, Func<long, object>>
-        {
-            {typeof(int), i => (int)i }
-        };
 
         public ModelGenerator(T target, long index)
         {
@@ -70,35 +63,5 @@ namespace Munchausen
 
             return _target;
         }
-
-        private void AutoFillFields()
-        {
-            Parallel.ForEach(typeof(T).GetProperties(), DynamicSetValue);
-        }
-
-        private void DynamicSetValue(PropertyInfo propertyInfo, ParallelLoopState state)
-        {
-            propertyInfo.SetValue(_target, GenerateSequencialValue(propertyInfo, _index));
-        }
-
-        private object GenerateSequencialValue(PropertyInfo propertyInfo, long index)
-        {
-            Type type = propertyInfo.PropertyType;
-            var info = type.GetTypeInfo();
-
-            if (info.IsValueType)
-            {
-
-                if (TypeHandlers.ContainsKey(type))
-                {
-                    return TypeHandlers[type](index);
-                }
-
-                return Activator.CreateInstance(type);
-            }
-
-            return null;
-        }
-
     }
 }
