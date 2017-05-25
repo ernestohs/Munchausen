@@ -4,7 +4,7 @@ solution: ./simple.sln
 
 install:
 
-  - sudo apt-get install mono-devel mono-dmcs nunit-console make
+  - sudo apt-get install mono-devel mono-dmcs make
 
 script:
 
