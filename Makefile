@@ -10,6 +10,4 @@ test: build
 
 clean:
 
-	xbuild /target:Clean Munchausen.sln
-
 	find . -type d -name 'bin' -o -name 'obj' | xargs rm -rvf 
