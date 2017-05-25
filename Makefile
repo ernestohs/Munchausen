@@ -6,7 +6,7 @@ build: clean
 
 test: build
 
-	nunit-console ./Munchausen.Engine.Tests/bin/Release/Munchausen.Engine.Tests.dll
+	nunit-console ./Munchausen.Tests/bin/Release/Munchausen.Tests.dll
 
 clean:
 
