@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <!-- Models intentionally have uninitialized non-nullable members; the
+         library under test is what populates them. -->
+    <NoWarn>$(NoWarn);CS8618</NoWarn>
+  </PropertyGroup>
+
+</Project>
