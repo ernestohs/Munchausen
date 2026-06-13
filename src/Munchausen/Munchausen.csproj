@@ -14,4 +14,9 @@
     <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Munchausen.Tests" />
+    <InternalsVisibleTo Include="Munchausen.DeterminismTests" />
+  </ItemGroup>
+
 </Project>

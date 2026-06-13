@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Munchausen.TestModels\Munchausen.TestModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Goldens\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
