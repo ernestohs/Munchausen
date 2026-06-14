@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Linq.Expressions;
 using System.Reflection;
 using Munchausen.Diagnostics;
 using Munchausen.Inference;
@@ -16,13 +17,18 @@ internal sealed class ParameterPlan(Type parameterType, string name, ValueSource
     public ValueSource Source { get; } = source;
 }
 
-/// <summary>Construct by invoking a selected public constructor.</summary>
-internal sealed class CompiledConstructorPlan(ConstructorInfo constructor, ImmutableArray<ParameterPlan> parameters)
-    : ConstructionPlan
+/// <summary>Construct by invoking a selected public constructor through a compiled invoker.</summary>
+internal sealed class CompiledConstructorPlan(
+    ConstructorInfo constructor,
+    ImmutableArray<ParameterPlan> parameters,
+    Func<object?[], object> invoker) : ConstructionPlan
 {
     public ConstructorInfo Constructor { get; } = constructor;
 
     public ImmutableArray<ParameterPlan> Parameters { get; } = parameters;
+
+    /// <summary>Reflection-free constructor invoker, compiled at build time.</summary>
+    public Func<object?[], object> Invoker { get; } = invoker;
 }
 
 /// <summary>Construct with a user <c>ConstructWith</c> delegate (adapted to the boxed shape).</summary>
@@ -130,6 +136,22 @@ internal sealed class ConstructorPlanner(InferenceEngine engine)
             })
             .ToImmutableArray();
 
-        return new CompiledConstructorPlan(constructor.Constructor, parameters);
+        return new CompiledConstructorPlan(
+            constructor.Constructor, parameters, CompileInvoker(constructor.Constructor));
+    }
+
+    private static Func<object?[], object> CompileInvoker(ConstructorInfo constructor)
+    {
+        ParameterExpression arguments = Expression.Parameter(typeof(object?[]), "arguments");
+        ParameterInfo[] parameters = constructor.GetParameters();
+        var converted = new Expression[parameters.Length];
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            converted[i] = Expression.Convert(
+                Expression.ArrayIndex(arguments, Expression.Constant(i)), parameters[i].ParameterType);
+        }
+
+        UnaryExpression body = Expression.Convert(Expression.New(constructor, converted), typeof(object));
+        return Expression.Lambda<Func<object?[], object>>(body, arguments).Compile();
     }
 }

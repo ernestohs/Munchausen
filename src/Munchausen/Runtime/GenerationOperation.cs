@@ -19,6 +19,7 @@ internal sealed class GenerationOperation
     private readonly int _maximumDepth;
     private readonly CycleBehavior _cycleBehavior;
     private readonly Dictionary<Type, object> _datasets = new();
+    private readonly Dictionary<Type, TypePlan> _planCache;
 
     public GenerationOperation(GenerationPlan plan, GenerationOptions? options, CancellationToken cancellation)
     {
@@ -39,6 +40,7 @@ internal sealed class GenerationOperation
 
         _maximumDepth = plan.Defaults.MaximumDepth ?? DefaultMaximumDepth;
         _cycleBehavior = plan.Defaults.CycleBehavior ?? CycleBehavior.Terminate;
+        _planCache = new Dictionary<Type, TypePlan>(plan.ReachablePlans);
 
         Context = new GenerationContext(this);
     }
@@ -110,32 +112,26 @@ internal sealed class GenerationOperation
                     () => user.Constructor(Context), typePlan.ModelType, GenerationPhase.Construction)!;
 
             case CompiledConstructorPlan compiled:
-                var arguments = new object?[compiled.Parameters.Length];
+                object?[] arguments = compiled.Parameters.Length == 0
+                    ? Array.Empty<object?>()
+                    : new object?[compiled.Parameters.Length];
                 for (int i = 0; i < arguments.Length; i++)
                 {
                     arguments[i] = EvaluateSource(typePlan.ModelType, compiled.Parameters[i].Source);
                 }
 
-                return InvokeConstructor(compiled.Constructor, arguments, typePlan.ModelType);
+                return InvokeConstructor(compiled, arguments, typePlan.ModelType);
 
             default:
                 throw new InvalidOperationException($"No usable constructor for {typePlan.ModelType}.");
         }
     }
 
-    private object InvokeConstructor(ConstructorInfo constructor, object?[] arguments, Type modelType)
+    private object InvokeConstructor(CompiledConstructorPlan plan, object?[] arguments, Type modelType)
     {
         try
         {
-            return constructor.Invoke(arguments)!;
-        }
-        catch (TargetInvocationException invocation) when (invocation.InnerException is OperationCanceledException canceled)
-        {
-            throw canceled;
-        }
-        catch (TargetInvocationException invocation)
-        {
-            throw Wrap(invocation.InnerException ?? invocation, modelType, GenerationPhase.Construction);
+            return plan.Invoker(arguments);
         }
         catch (OperationCanceledException)
         {
@@ -219,7 +215,50 @@ internal sealed class GenerationOperation
         }
 
         _cancellation.ThrowIfCancellationRequested();
-        return GenerateObject(_plan.ReachablePlans[childType]);
+        return GenerateObject(ResolvePlan(childType));
+    }
+
+    /// <summary>User-initiated nested generation via <c>GenerationContext.Generate&lt;T&gt;</c>.</summary>
+    public object? GenerateChild(Type type, GenerationPlan? explicitPlan)
+    {
+        TypePlan typePlan;
+        if (explicitPlan is not null)
+        {
+            foreach (KeyValuePair<Type, TypePlan> entry in explicitPlan.ReachablePlans)
+            {
+                _planCache.TryAdd(entry.Key, entry.Value);
+            }
+
+            typePlan = explicitPlan.Root;
+        }
+        else
+        {
+            typePlan = ResolvePlan(type);
+        }
+
+        if (Path.Depth + 1 > _maximumDepth || Path.ContainsType(typePlan.ModelType))
+        {
+            return TerminateOrThrow(type);
+        }
+
+        _cancellation.ThrowIfCancellationRequested();
+        return GenerateObject(typePlan);
+    }
+
+    private TypePlan ResolvePlan(Type type)
+    {
+        if (_planCache.TryGetValue(type, out TypePlan? plan))
+        {
+            return plan;
+        }
+
+        GenerationPlan automatic = DefinitionCompiler.Default.CompileAutomatic(type);
+        foreach (KeyValuePair<Type, TypePlan> entry in automatic.ReachablePlans)
+        {
+            _planCache.TryAdd(entry.Key, entry.Value);
+        }
+
+        return _planCache[type];
     }
 
     private object MaterializeCollection(Type modelType, CollectionSource collection)

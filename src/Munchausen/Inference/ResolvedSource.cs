@@ -19,10 +19,10 @@ internal sealed record ResolvedSource(
         new(InferenceSource.Type, Confidence: null, generator);
 
     public static ResolvedSource Nested(StructuralClassification structural) =>
-        new(InferenceSource.Type, Confidence: null, "(nested object)", structural);
+        new(InferenceSource.ChildDefinition, Confidence: null, "(nested object)", structural);
 
     public static ResolvedSource Collection(StructuralClassification structural) =>
-        new(InferenceSource.Type, Confidence: null, "(collection)", structural);
+        new(InferenceSource.ChildDefinition, Confidence: null, "(collection)", structural);
 
     public static ResolvedSource Unsupported(StructuralClassification? structural = null) =>
         new(InferenceSource.Unsupported, Confidence: null, "(unsupported)", structural);

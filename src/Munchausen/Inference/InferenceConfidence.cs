@@ -1,35 +1,9 @@
 namespace Munchausen.Inference;
 
 /// <summary>
-/// Confidence of an inference match. Mirrors the public confidence enum that the
-/// InferenceReport family exposes in a later milestone; kept internal here so M4
-/// introduces no public surface.
+/// Confidence helpers over the public <see cref="InferenceConfidence"/> enum
+/// (resolved through the enclosing <c>Munchausen</c> namespace).
 /// </summary>
-internal enum InferenceConfidence
-{
-    High,
-    Medium,
-    Low,
-}
-
-/// <summary>
-/// Where a member's value source came from. Mirrors the public <c>InferenceSource</c>
-/// the report family exposes later; internal for now.
-/// </summary>
-internal enum InferenceSource
-{
-    Explicit,
-    Derived,
-    Preserved,
-    Ignored,
-    Attribute,
-    CustomProvider,
-    Semantic,
-    Type,
-    ChildDefinition,
-    Unsupported,
-}
-
 internal static class Confidence
 {
     /// <summary>One confidence level below <paramref name="value"/>, never below Low.</summary>

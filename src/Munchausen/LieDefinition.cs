@@ -51,5 +51,5 @@ public sealed class LieDefinition<T>
     }
 
     /// <summary>Returns a structured explanation of how each member is resolved.</summary>
-    public InferenceReport Explain() => throw new NotImplementedException();
+    public InferenceReport Explain() => Munchausen.Explain.InferenceReportBuilder.Build(_plan);
 }

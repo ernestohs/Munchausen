@@ -43,4 +43,37 @@ public sealed class GenerationContext
 
     /// <summary>Resolves a dataset by type, cached one instance per operation.</summary>
     public TDataset Dataset<TDataset>() => (TDataset)_operation.ResolveDataset(typeof(TDataset));
+
+    /// <summary>Generates a nested <typeparamref name="TModel"/> using automatic inference.</summary>
+    public TModel Generate<TModel>() => (TModel)_operation.GenerateChild(typeof(TModel), explicitPlan: null)!;
+
+    /// <summary>Generates <paramref name="count"/> nested <typeparamref name="TModel"/> instances.</summary>
+    public IReadOnlyList<TModel> GenerateMany<TModel>(int count) => GenerateMany<TModel>(count, plan: null);
+
+    /// <summary>Generates a nested <typeparamref name="TModel"/> using the supplied definition.</summary>
+    public TModel Generate<TModel>(LieDefinition<TModel> definition)
+    {
+        ArgumentNullException.ThrowIfNull(definition);
+        return (TModel)_operation.GenerateChild(typeof(TModel), definition.Plan)!;
+    }
+
+    /// <summary>Generates <paramref name="count"/> nested <typeparamref name="TModel"/> using the supplied definition.</summary>
+    public IReadOnlyList<TModel> GenerateMany<TModel>(LieDefinition<TModel> definition, int count)
+    {
+        ArgumentNullException.ThrowIfNull(definition);
+        return GenerateMany<TModel>(count, definition.Plan);
+    }
+
+    private IReadOnlyList<TModel> GenerateMany<TModel>(int count, Munchausen.Compilation.GenerationPlan? plan)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+        var results = new List<TModel>(count);
+        for (int i = 0; i < count; i++)
+        {
+            results.Add((TModel)_operation.GenerateChild(typeof(TModel), plan)!);
+        }
+
+        return results;
+    }
 }
+

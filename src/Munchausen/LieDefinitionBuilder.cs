@@ -20,7 +20,10 @@ public sealed class LieDefinitionBuilder<T>
 
     internal BuilderState State => _state;
 
-    /// <summary>Sets the definition name, surfaced on the built definition and in diagnostics.</summary>
+    /// <summary>
+    /// Sets the definition name, surfaced on the built definition and in diagnostics.
+    /// An empty or whitespace name causes <see cref="Build"/> to emit LIE005.
+    /// </summary>
     public LieDefinitionBuilder<T> WithName(string name)
     {
         ArgumentNullException.ThrowIfNull(name);
@@ -28,7 +31,12 @@ public sealed class LieDefinitionBuilder<T>
         return this;
     }
 
-    /// <summary>Assigns a constant value to the targeted member.</summary>
+    /// <summary>
+    /// Assigns a constant value to the targeted member. An invalid member expression
+    /// causes <see cref="Build"/> to emit LIE001; combining this with
+    /// <see cref="Ignore{TProperty}"/> or <see cref="Preserve{TProperty}"/> on the
+    /// same member emits LIE002.
+    /// </summary>
     public LieDefinitionBuilder<T> With<TProperty>(
         Expression<Func<T, TProperty>> property,
         TProperty value)
@@ -38,7 +46,11 @@ public sealed class LieDefinitionBuilder<T>
         return this;
     }
 
-    /// <summary>Assigns the targeted member from a generator delegate.</summary>
+    /// <summary>
+    /// Assigns the targeted member from a generator delegate. An invalid member
+    /// expression causes <see cref="Build"/> to emit LIE001; a conflicting rule on
+    /// the same member emits LIE002.
+    /// </summary>
     public LieDefinitionBuilder<T> With<TProperty>(
         Expression<Func<T, TProperty>> property,
         Func<GenerationContext, TProperty> generator)
@@ -49,7 +61,12 @@ public sealed class LieDefinitionBuilder<T>
         return this;
     }
 
-    /// <summary>Derives the targeted member from the partially populated instance.</summary>
+    /// <summary>
+    /// Derives the targeted member from the partially populated instance, after
+    /// member population. An invalid member expression causes <see cref="Build"/> to
+    /// emit LIE001; combining a derivation with any other rule on the same member
+    /// emits LIE002.
+    /// </summary>
     public LieDefinitionBuilder<T> Derive<TProperty>(
         Expression<Func<T, TProperty>> property,
         Func<GenerationContext, T, TProperty> generator)
@@ -60,7 +77,13 @@ public sealed class LieDefinitionBuilder<T>
         return this;
     }
 
-    /// <summary>Leaves the targeted member at its type default (not populated).</summary>
+    /// <summary>
+    /// Unlike <see cref="Preserve{TProperty}"/>, which keeps an existing
+    /// constructor or initializer value, <c>Ignore</c> leaves the targeted member at
+    /// its type default and does not populate it. An invalid member expression
+    /// causes <see cref="Build"/> to emit LIE001; combining <c>Ignore</c> with a
+    /// <c>With</c> or <c>Preserve</c> on the same member emits LIE002.
+    /// </summary>
     public LieDefinitionBuilder<T> Ignore<TProperty>(Expression<Func<T, TProperty>> property)
     {
         ArgumentNullException.ThrowIfNull(property);
@@ -68,7 +91,13 @@ public sealed class LieDefinitionBuilder<T>
         return this;
     }
 
-    /// <summary>Preserves whatever value the targeted member already holds after construction.</summary>
+    /// <summary>
+    /// Unlike <see cref="Ignore{TProperty}"/>, which leaves the member at its type
+    /// default, <c>Preserve</c> keeps whatever value the targeted member already holds
+    /// after construction or initialization. An invalid member expression causes
+    /// <see cref="Build"/> to emit LIE001; combining <c>Preserve</c> with a <c>With</c>
+    /// or <c>Ignore</c> on the same member emits LIE002.
+    /// </summary>
     public LieDefinitionBuilder<T> Preserve<TProperty>(Expression<Func<T, TProperty>> property)
     {
         ArgumentNullException.ThrowIfNull(property);

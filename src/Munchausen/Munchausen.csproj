@@ -16,6 +16,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="Munchausen.Tests" />
     <InternalsVisibleTo Include="Munchausen.DeterminismTests" />
+    <InternalsVisibleTo Include="Munchausen.Benchmarks" />
   </ItemGroup>
 
 </Project>

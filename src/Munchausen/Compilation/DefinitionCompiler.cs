@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Immutable;
 using Munchausen.Builder;
 using Munchausen.Diagnostics;
@@ -30,6 +31,13 @@ internal sealed class DefinitionCompiler
 
     public static DefinitionCompiler Default { get; } =
         new(ReflectionModelMetadataProvider.Shared, new CompiledExpressionAccessorFactory());
+
+    // Process-wide cache of automatic plans (pure function of model type + library version).
+    private static readonly ConcurrentDictionary<Type, GenerationPlan> AutomaticPlans = new();
+
+    /// <summary>The cached automatic (inference-only) plan for <paramref name="type"/>.</summary>
+    public GenerationPlan CompileAutomatic(Type type) =>
+        AutomaticPlans.GetOrAdd(type, t => Compile(t, new BuilderState()));
 
     public GenerationPlan Compile(Type rootType, BuilderState state)
     {
@@ -154,13 +162,13 @@ internal sealed class DefinitionCompiler
             case MemberRuleKind.WithValue:
                 return (
                     new ConstantSource(rule.Payload),
-                    new MemberReportData(InferenceSource.Explicit, "With(value)", null, [], []));
+                    new MemberReportData(InferenceSource.Explicit, "With(value)", null, [], rule.OverriddenRules));
 
             case MemberRuleKind.WithGenerator:
                 return (
                     new DelegateSource(
                         UserDelegateAdapter.Value((Delegate)rule.Payload!), "With(generator)", isUserDelegate: true),
-                    new MemberReportData(InferenceSource.Explicit, "With(generator)", null, [], []));
+                    new MemberReportData(InferenceSource.Explicit, "With(generator)", null, [], rule.OverriddenRules));
 
             case MemberRuleKind.Ignore:
                 return (
@@ -226,22 +234,30 @@ internal sealed class DefinitionCompiler
             }
             else if (withs.Count > 0)
             {
-                effective[token] = new EffectiveRule(withs[^1].Kind, withs[^1].Payload);
+                string[] overridden = withs.Take(withs.Count - 1).Select(w => Describe(w.Kind)).ToArray();
+                effective[token] = new EffectiveRule(withs[^1].Kind, withs[^1].Payload, overridden);
             }
             else if (hasIgnore)
             {
-                effective[token] = new EffectiveRule(MemberRuleKind.Ignore, null);
+                effective[token] = new EffectiveRule(MemberRuleKind.Ignore, null, Array.Empty<string>());
             }
             else if (hasPreserve)
             {
-                effective[token] = new EffectiveRule(MemberRuleKind.Preserve, null);
+                effective[token] = new EffectiveRule(MemberRuleKind.Preserve, null, Array.Empty<string>());
             }
         }
 
         return new ResolvedRules(effective, derives);
     }
 
-    private sealed record EffectiveRule(MemberRuleKind Kind, object? Payload);
+    private static string Describe(MemberRuleKind kind) => kind switch
+    {
+        MemberRuleKind.WithValue => "With(value)",
+        MemberRuleKind.WithGenerator => "With(generator)",
+        _ => kind.ToString(),
+    };
+
+    private sealed record EffectiveRule(MemberRuleKind Kind, object? Payload, IReadOnlyList<string> OverriddenRules);
 
     private sealed record ResolvedRules(
         Dictionary<int, EffectiveRule> Effective,

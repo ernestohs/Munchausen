@@ -166,3 +166,37 @@ Munchausen.WeightedValue<T>.Weight.get -> double
 Munchausen.WeightedValue<T>.Weight.init -> void
 Munchausen.WeightedValue<T>.WeightedValue() -> void
 Munchausen.WeightedValue<T>.WeightedValue(T Value, double Weight) -> void
+Munchausen.GenerationContext.Generate<TModel>() -> TModel
+Munchausen.GenerationContext.Generate<TModel>(Munchausen.LieDefinition<TModel>! definition) -> TModel
+Munchausen.GenerationContext.GenerateMany<TModel>(int count) -> System.Collections.Generic.IReadOnlyList<TModel>!
+Munchausen.GenerationContext.GenerateMany<TModel>(Munchausen.LieDefinition<TModel>! definition, int count) -> System.Collections.Generic.IReadOnlyList<TModel>!
+Munchausen.InferenceConfidence
+Munchausen.InferenceConfidence.High = 0 -> Munchausen.InferenceConfidence
+Munchausen.InferenceConfidence.Low = 2 -> Munchausen.InferenceConfidence
+Munchausen.InferenceConfidence.Medium = 1 -> Munchausen.InferenceConfidence
+Munchausen.InferenceReport.DefinitionName.get -> string?
+Munchausen.InferenceReport.Diagnostics.get -> System.Collections.Generic.IReadOnlyList<Munchausen.LieDiagnostic!>!
+Munchausen.InferenceReport.IsComplete.get -> bool
+Munchausen.InferenceReport.Locale.get -> string!
+Munchausen.InferenceReport.Members.get -> System.Collections.Generic.IReadOnlyList<Munchausen.MemberInferenceReport!>!
+Munchausen.InferenceReport.ModelType.get -> System.Type!
+Munchausen.InferenceReport.ToText() -> string!
+Munchausen.InferenceSource
+Munchausen.InferenceSource.Attribute = 4 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.ChildDefinition = 8 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.CustomProvider = 5 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Derived = 1 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Explicit = 0 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Ignored = 3 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Preserved = 2 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Semantic = 6 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Type = 7 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Unsupported = 9 -> Munchausen.InferenceSource
+Munchausen.MemberInferenceReport
+Munchausen.MemberInferenceReport.Confidence.get -> Munchausen.InferenceConfidence?
+Munchausen.MemberInferenceReport.DerivationOrder.get -> int?
+Munchausen.MemberInferenceReport.Generator.get -> string!
+Munchausen.MemberInferenceReport.MemberPath.get -> string!
+Munchausen.MemberInferenceReport.OriginDefinition.get -> string?
+Munchausen.MemberInferenceReport.OverriddenRules.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Munchausen.MemberInferenceReport.Source.get -> Munchausen.InferenceSource
