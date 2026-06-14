@@ -3,6 +3,10 @@
   <PropertyGroup>
     <RootNamespace>Munchausen</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- The v1.0 public surface (API_DESIGN.md) deliberately overloads Generate with
+         optional parameters (Generate(options, ct) and Generate(count, options, ct)).
+         RS0026/RS0027 flag that idiomatic pattern; the frozen design takes precedence. -->
+    <NoWarn>$(NoWarn);RS0026;RS0027</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

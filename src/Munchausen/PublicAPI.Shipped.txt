@@ -1,0 +1,58 @@
+#nullable enable
+Munchausen.CollectionSize
+Munchausen.CollectionSize.CollectionSize() -> void
+Munchausen.CollectionSize.MaxCount.get -> int
+Munchausen.CollectionSize.MinCount.get -> int
+Munchausen.CycleBehavior
+Munchausen.CycleBehavior.Terminate = 0 -> Munchausen.CycleBehavior
+Munchausen.CycleBehavior.Throw = 1 -> Munchausen.CycleBehavior
+Munchausen.GenerationContext
+Munchausen.GenerationDefaults
+Munchausen.GenerationDefaults.CycleBehavior.get -> Munchausen.CycleBehavior?
+Munchausen.GenerationDefaults.CycleBehavior.init -> void
+Munchausen.GenerationDefaults.MaximumDepth.get -> int?
+Munchausen.GenerationDefaults.MaximumDepth.init -> void
+Munchausen.GenerationDefaults.ReferenceTime.get -> System.DateTimeOffset?
+Munchausen.GenerationDefaults.ReferenceTime.init -> void
+Munchausen.GenerationDefaults.Seed.get -> int?
+Munchausen.GenerationDefaults.Seed.init -> void
+Munchausen.GenerationDefaults.SemanticInference.get -> Munchausen.SemanticInferenceMode?
+Munchausen.GenerationDefaults.SemanticInference.init -> void
+Munchausen.GenerationOptions
+Munchausen.GenerationOptions.ReferenceTime.get -> System.DateTimeOffset?
+Munchausen.GenerationOptions.ReferenceTime.init -> void
+Munchausen.GenerationOptions.Seed.get -> int?
+Munchausen.GenerationOptions.Seed.init -> void
+Munchausen.GenerationOptions.TimeProvider.get -> System.TimeProvider?
+Munchausen.GenerationOptions.TimeProvider.init -> void
+Munchausen.InferenceReport
+Munchausen.Lie
+Munchausen.Lie<T>
+Munchausen.LieConstructorAttribute
+Munchausen.LieConstructorAttribute.LieConstructorAttribute() -> void
+Munchausen.LieDefinition<T>
+Munchausen.LieDefinition<T>.Explain() -> Munchausen.InferenceReport!
+Munchausen.LieDefinition<T>.Generate(int count, Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IReadOnlyList<T>!
+Munchausen.LieDefinition<T>.Generate(Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> T
+Munchausen.LieDefinition<T>.Name.get -> string?
+Munchausen.LieDefinitionBuilder<T>
+Munchausen.LieDefinitionBuilder<T>.Build() -> Munchausen.LieDefinition<T>!
+Munchausen.LieDefinitionBuilder<T>.ConstructWith(System.Func<Munchausen.GenerationContext!, T>! constructor) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.Derive<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property, System.Func<Munchausen.GenerationContext!, T, TProperty>! generator) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.Ignore<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.Preserve<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.With<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property, System.Func<Munchausen.GenerationContext!, TProperty>! generator) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.With<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property, TProperty value) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.WithDefaults(Munchausen.GenerationDefaults! defaults) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.WithName(string! name) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.WithSeed(int seed) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Aggressive = 2 -> Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Balanced = 1 -> Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Conservative = 0 -> Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Disabled = 3 -> Munchausen.SemanticInferenceMode
+static Munchausen.CollectionSize.Between(int minInclusive, int maxInclusive) -> Munchausen.CollectionSize
+static Munchausen.CollectionSize.Exactly(int count) -> Munchausen.CollectionSize
+static Munchausen.Lie.Define<T>() -> Munchausen.LieDefinitionBuilder<T>!
+static Munchausen.Lie<T>.Generate(int count, Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IReadOnlyList<T>!
+static Munchausen.Lie<T>.Generate(Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> T
