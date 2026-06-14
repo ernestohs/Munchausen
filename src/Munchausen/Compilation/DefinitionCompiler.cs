@@ -116,11 +116,10 @@ internal sealed class DefinitionCompiler
                 continue;
             }
 
-            var derive = (Delegate)payload;
             derivations.Add(new DerivationPlan(
                 member,
                 _accessorFactory.CreateAccessor(member),
-                (context, instance) => derive.DynamicInvoke(context, instance),
+                UserDelegateAdapter.Derive((Delegate)payload, type),
                 registrationIndex));
         }
 
@@ -158,9 +157,9 @@ internal sealed class DefinitionCompiler
                     new MemberReportData(InferenceSource.Explicit, "With(value)", null, [], []));
 
             case MemberRuleKind.WithGenerator:
-                var generator = (Delegate)rule.Payload!;
                 return (
-                    new DelegateSource(context => generator.DynamicInvoke(context), "With(generator)"),
+                    new DelegateSource(
+                        UserDelegateAdapter.Value((Delegate)rule.Payload!), "With(generator)", isUserDelegate: true),
                     new MemberReportData(InferenceSource.Explicit, "With(generator)", null, [], []));
 
             case MemberRuleKind.Ignore:

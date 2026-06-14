@@ -74,3 +74,20 @@ static Munchausen.CollectionSize.Exactly(int count) -> Munchausen.CollectionSize
 static Munchausen.Lie.Define<T>() -> Munchausen.LieDefinitionBuilder<T>!
 static Munchausen.Lie<T>.Generate(int count, Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IReadOnlyList<T>!
 static Munchausen.Lie<T>.Generate(Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> T
+Munchausen.GenerationContext.Index.get -> long
+Munchausen.GenerationContext.Locale.get -> string!
+Munchausen.GenerationContext.MemberPath.get -> string!
+Munchausen.GenerationPhase
+Munchausen.GenerationPhase.AfterGenerateHook = 4 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.BeforeGenerateHook = 1 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.Construction = 0 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.Derivation = 3 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.MemberPopulation = 2 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.UniquenessCommit = 6 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.Validation = 5 -> Munchausen.GenerationPhase
+Munchausen.LieException
+Munchausen.LieGenerationException
+Munchausen.LieGenerationException.GenerationIndex.get -> long
+Munchausen.LieGenerationException.MemberPath.get -> string!
+Munchausen.LieGenerationException.ModelType.get -> System.Type!
+Munchausen.LieGenerationException.Phase.get -> Munchausen.GenerationPhase

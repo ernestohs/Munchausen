@@ -25,10 +25,10 @@ internal sealed class CompiledConstructorPlan(ConstructorInfo constructor, Immut
     public ImmutableArray<ParameterPlan> Parameters { get; } = parameters;
 }
 
-/// <summary>Construct with a user <c>ConstructWith</c> delegate.</summary>
-internal sealed class UserDelegatePlan(object constructor) : ConstructionPlan
+/// <summary>Construct with a user <c>ConstructWith</c> delegate (adapted to the boxed shape).</summary>
+internal sealed class UserDelegatePlan(Func<GenerationContext, object?> constructor) : ConstructionPlan
 {
-    public object Constructor { get; } = constructor;
+    public Func<GenerationContext, object?> Constructor { get; } = constructor;
 }
 
 /// <summary>No usable construction; emitted alongside a diagnostic so compilation can continue.</summary>
@@ -51,7 +51,7 @@ internal sealed class ConstructorPlanner(InferenceEngine engine)
     {
         if (constructWith is not null)
         {
-            return new UserDelegatePlan(constructWith);
+            return new UserDelegatePlan(UserDelegateAdapter.Value((Delegate)constructWith));
         }
 
         IReadOnlyList<ConstructorMetadata> constructors = metadata.Constructors;

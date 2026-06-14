@@ -1,5 +1,6 @@
 using Munchausen.Diagnostics;
 using Munchausen.Inference;
+using Munchausen.Runtime;
 
 namespace Munchausen.Compilation;
 
@@ -36,7 +37,7 @@ internal sealed class MemberSourceBuilder
         switch (context.Structural.Kind)
         {
             case StructuralKind.Scalar:
-                return new DelegateSource(Unbound, resolved.GeneratorName);
+                return BuildScalarSource(context, resolved);
 
             case StructuralKind.Nested:
                 Type childType = context.Structural.Type;
@@ -49,12 +50,7 @@ internal sealed class MemberSourceBuilder
                 return new NestedSource(childType);
 
             case StructuralKind.Collection:
-                Type elementType = context.Structural.ElementType ?? typeof(object);
-                return new CollectionSource(
-                    context.Structural.Shape,
-                    elementType,
-                    BuildElementSource(elementType),
-                    CollectionSize.Between(1, 3));
+                return BuildCollectionSource(context.Structural);
 
             default:
                 if (isRequired)
@@ -66,13 +62,50 @@ internal sealed class MemberSourceBuilder
         }
     }
 
+    private static ValueSource BuildScalarSource(MemberInferenceContext context, ResolvedSource resolved)
+    {
+        // Semantic generators bind in M7; only pure type defaults bind now.
+        if (resolved.Source == InferenceSource.Type)
+        {
+            Type type = Nullable.GetUnderlyingType(context.ValueType) ?? context.ValueType;
+            Func<GenerationContext, object?>? generator = TypeDefaultGenerators.For(type);
+            if (generator is not null)
+            {
+                return new DelegateSource(generator, resolved.GeneratorName);
+            }
+        }
+
+        return new DelegateSource(Unbound, resolved.GeneratorName);
+    }
+
+    private CollectionSource BuildCollectionSource(StructuralClassification structural)
+    {
+        Func<IReadOnlyList<object?>, object> materializer = structural.Shape switch
+        {
+            CollectionShape.Array => CollectionMaterializers.ForArray(structural.ElementType!),
+            CollectionShape.Dictionary or CollectionShape.IDictionary or CollectionShape.IReadOnlyDictionary =>
+                CollectionMaterializers.ForEmptyDictionary(structural.KeyType!, structural.ValueType!),
+            _ => CollectionMaterializers.ForList(structural.ElementType!),
+        };
+
+        Type elementType = structural.ElementType ?? typeof(object);
+        return new CollectionSource(
+            structural.Shape,
+            elementType,
+            BuildElementSource(elementType),
+            CollectionSize.Between(1, 3),
+            materializer);
+    }
+
     private ValueSource BuildElementSource(Type elementType)
     {
         StructuralClassification classification = StructuralClassifier.Classify(elementType);
         switch (classification.Kind)
         {
             case StructuralKind.Scalar:
-                return new DelegateSource(Unbound, "element");
+                Type type = Nullable.GetUnderlyingType(elementType) ?? elementType;
+                Func<GenerationContext, object?>? generator = TypeDefaultGenerators.For(type);
+                return new DelegateSource(generator ?? Unbound, "element");
 
             case StructuralKind.Nested:
                 _enqueueReachable(elementType);

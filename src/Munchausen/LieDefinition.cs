@@ -1,4 +1,5 @@
 using Munchausen.Compilation;
+using Munchausen.Runtime;
 
 namespace Munchausen;
 
@@ -26,15 +27,28 @@ public sealed class LieDefinition<T>
     /// <summary>Generates a single <typeparamref name="T"/>.</summary>
     public T Generate(
         GenerationOptions? options = null,
-        CancellationToken cancellationToken = default) =>
-        throw new NotImplementedException();
+        CancellationToken cancellationToken = default)
+    {
+        var operation = new GenerationOperation(_plan, options, cancellationToken);
+        return (T)operation.GenerateRoot(0);
+    }
 
     /// <summary>Generates <paramref name="count"/> instances of <typeparamref name="T"/>.</summary>
     public IReadOnlyList<T> Generate(
         int count,
         GenerationOptions? options = null,
-        CancellationToken cancellationToken = default) =>
-        throw new NotImplementedException();
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegative(count);
+        var operation = new GenerationOperation(_plan, options, cancellationToken);
+        var results = new List<T>(count);
+        for (long index = 0; index < count; index++)
+        {
+            results.Add((T)operation.GenerateRoot(index));
+        }
+
+        return results;
+    }
 
     /// <summary>Returns a structured explanation of how each member is resolved.</summary>
     public InferenceReport Explain() => throw new NotImplementedException();

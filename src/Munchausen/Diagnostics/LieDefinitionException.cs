@@ -6,7 +6,7 @@ namespace Munchausen;
 /// the <see cref="Exception.Message"/> summarizes the first error and the count of
 /// the rest, so naive logging is already actionable.
 /// </summary>
-public sealed class LieDefinitionException : Exception
+public sealed class LieDefinitionException : LieException
 {
     internal LieDefinitionException(string message, IReadOnlyList<LieDiagnostic> diagnostics)
         : base(message)
