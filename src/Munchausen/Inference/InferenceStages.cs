@@ -2,22 +2,39 @@ using Munchausen.Metadata;
 
 namespace Munchausen.Inference;
 
-/// <summary>Per-member context handed to each inference stage.</summary>
+/// <summary>
+/// Per-member context handed to each inference stage. Built from a property's
+/// <see cref="MemberMetadata"/> or, for a constructor parameter, from its raw
+/// name and type — so parameters and properties share one inference pipeline.
+/// </summary>
 internal sealed class MemberInferenceContext
 {
     public MemberInferenceContext(
-        Type modelType, MemberMetadata member, string memberPath, SemanticInferenceMode semanticMode)
+        Type modelType, string memberName, Type valueType, string memberPath, SemanticInferenceMode semanticMode)
     {
         ModelType = modelType;
-        Member = member;
+        MemberName = memberName;
+        ValueType = valueType;
         MemberPath = memberPath;
         SemanticMode = semanticMode;
-        Structural = StructuralClassifier.Classify(member.ValueType);
+        Structural = StructuralClassifier.Classify(valueType);
+    }
+
+    public MemberInferenceContext(
+        Type modelType, MemberMetadata member, string memberPath, SemanticInferenceMode semanticMode)
+        : this(modelType, member.Name, member.ValueType, memberPath, semanticMode)
+    {
+        Member = member;
     }
 
     public Type ModelType { get; }
 
-    public MemberMetadata Member { get; }
+    public string MemberName { get; }
+
+    public Type ValueType { get; }
+
+    /// <summary>The full metadata when the context describes a property; null for a constructor parameter.</summary>
+    public MemberMetadata? Member { get; }
 
     public string MemberPath { get; }
 
@@ -48,7 +65,7 @@ internal sealed class SemanticStage : IInferenceStage
         }
 
         IReadOnlyList<ScoredCandidate> scored = SemanticMatcher.Match(
-            context.Member.Name, context.ModelType.Name, context.Member.ValueType);
+            context.MemberName, context.ModelType.Name, context.ValueType);
         if (scored.Count == 0)
         {
             return false;

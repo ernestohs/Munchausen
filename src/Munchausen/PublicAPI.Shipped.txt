@@ -46,6 +46,24 @@ Munchausen.LieDefinitionBuilder<T>.With<TProperty>(System.Linq.Expressions.Expre
 Munchausen.LieDefinitionBuilder<T>.WithDefaults(Munchausen.GenerationDefaults! defaults) -> Munchausen.LieDefinitionBuilder<T>!
 Munchausen.LieDefinitionBuilder<T>.WithName(string! name) -> Munchausen.LieDefinitionBuilder<T>!
 Munchausen.LieDefinitionBuilder<T>.WithSeed(int seed) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionException
+Munchausen.LieDefinitionException.Diagnostics.get -> System.Collections.Generic.IReadOnlyList<Munchausen.LieDiagnostic!>!
+Munchausen.LieDiagnostic
+Munchausen.LieDiagnostic.Code.get -> string!
+Munchausen.LieDiagnostic.Code.init -> void
+Munchausen.LieDiagnostic.LieDiagnostic(string! Code, Munchausen.LieDiagnosticSeverity Severity, string! Message, System.Type? ModelType = null, string? MemberPath = null) -> void
+Munchausen.LieDiagnostic.MemberPath.get -> string?
+Munchausen.LieDiagnostic.MemberPath.init -> void
+Munchausen.LieDiagnostic.Message.get -> string!
+Munchausen.LieDiagnostic.Message.init -> void
+Munchausen.LieDiagnostic.ModelType.get -> System.Type?
+Munchausen.LieDiagnostic.ModelType.init -> void
+Munchausen.LieDiagnostic.Severity.get -> Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnostic.Severity.init -> void
+Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnosticSeverity.Error = 2 -> Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnosticSeverity.Info = 0 -> Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnosticSeverity.Warning = 1 -> Munchausen.LieDiagnosticSeverity
 Munchausen.SemanticInferenceMode
 Munchausen.SemanticInferenceMode.Aggressive = 2 -> Munchausen.SemanticInferenceMode
 Munchausen.SemanticInferenceMode.Balanced = 1 -> Munchausen.SemanticInferenceMode

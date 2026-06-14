@@ -97,5 +97,6 @@ public sealed class LieDefinitionBuilder<T>
     }
 
     /// <summary>Compiles the accumulated configuration into an immutable definition.</summary>
-    public LieDefinition<T> Build() => throw new NotImplementedException();
+    public LieDefinition<T> Build() =>
+        new(Compilation.DefinitionCompiler.Default.Compile(typeof(T), _state));
 }

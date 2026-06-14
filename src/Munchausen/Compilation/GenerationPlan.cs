@@ -67,14 +67,15 @@ internal sealed class TypePlan(
 
 /// <summary>
 /// A frozen, immutable generation plan: the root type plan plus every reachable
-/// child plan, shared by reference for recursive graphs.
-/// (BuildDiagnostics is added with the diagnostics layer in M5.)
+/// child plan, shared by reference for recursive graphs. Errors throw at build,
+/// so <see cref="BuildDiagnostics"/> retains only Info/Warning entries.
 /// </summary>
 internal sealed class GenerationPlan(
     TypePlan root,
     ImmutableDictionary<Type, TypePlan> reachablePlans,
     GenerationDefaults defaults,
-    string? definitionName)
+    string? definitionName,
+    ImmutableArray<LieDiagnostic> buildDiagnostics)
 {
     public TypePlan Root { get; } = root;
 
@@ -83,4 +84,6 @@ internal sealed class GenerationPlan(
     public GenerationDefaults Defaults { get; } = defaults;
 
     public string? DefinitionName { get; } = definitionName;
+
+    public ImmutableArray<LieDiagnostic> BuildDiagnostics { get; } = buildDiagnostics;
 }

@@ -1,3 +1,5 @@
+using Munchausen.Compilation;
+
 namespace Munchausen;
 
 /// <summary>
@@ -8,7 +10,15 @@ namespace Munchausen;
 /// <typeparam name="T">The model type this definition generates.</typeparam>
 public sealed class LieDefinition<T>
 {
-    internal LieDefinition(string? name) => Name = name;
+    private readonly GenerationPlan _plan;
+
+    internal LieDefinition(GenerationPlan plan)
+    {
+        _plan = plan;
+        Name = plan.DefinitionName;
+    }
+
+    internal GenerationPlan Plan => _plan;
 
     /// <summary>The optional definition name set through <see cref="LieDefinitionBuilder{T}.WithName"/>.</summary>
     public string? Name { get; }
