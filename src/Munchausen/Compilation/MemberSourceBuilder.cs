@@ -1,3 +1,4 @@
+using Munchausen.Datasets;
 using Munchausen.Diagnostics;
 using Munchausen.Inference;
 using Munchausen.Runtime;
@@ -64,18 +65,33 @@ internal sealed class MemberSourceBuilder
 
     private static ValueSource BuildScalarSource(MemberInferenceContext context, ResolvedSource resolved)
     {
-        // Semantic generators bind in M7; only pure type defaults bind now.
-        if (resolved.Source == InferenceSource.Type)
+        Type type = Nullable.GetUnderlyingType(context.ValueType) ?? context.ValueType;
+        Func<GenerationContext, object?>? generator = resolved.Source == InferenceSource.Semantic
+            ? AdaptDate(SemanticGenerators.Resolve(resolved.GeneratorName), type)
+            : TypeDefaultGenerators.For(type);
+
+        return new DelegateSource(generator ?? Unbound, resolved.GeneratorName);
+    }
+
+    // Date semantic generators yield DateTimeOffset; adapt to the member's declared date type.
+    private static Func<GenerationContext, object?>? AdaptDate(Func<GenerationContext, object?>? generator, Type memberType)
+    {
+        if (generator is null)
         {
-            Type type = Nullable.GetUnderlyingType(context.ValueType) ?? context.ValueType;
-            Func<GenerationContext, object?>? generator = TypeDefaultGenerators.For(type);
-            if (generator is not null)
-            {
-                return new DelegateSource(generator, resolved.GeneratorName);
-            }
+            return null;
         }
 
-        return new DelegateSource(Unbound, resolved.GeneratorName);
+        if (memberType == typeof(DateTime))
+        {
+            return context => ((DateTimeOffset)generator(context)!).UtcDateTime;
+        }
+
+        if (memberType == typeof(DateOnly))
+        {
+            return context => DateOnly.FromDateTime(((DateTimeOffset)generator(context)!).UtcDateTime);
+        }
+
+        return generator;
     }
 
     private CollectionSource BuildCollectionSource(StructuralClassification structural)

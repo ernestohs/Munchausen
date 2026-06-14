@@ -91,3 +91,78 @@ Munchausen.LieGenerationException.GenerationIndex.get -> long
 Munchausen.LieGenerationException.MemberPath.get -> string!
 Munchausen.LieGenerationException.ModelType.get -> System.Type!
 Munchausen.LieGenerationException.Phase.get -> Munchausen.GenerationPhase
+Munchausen.AddressData
+Munchausen.AddressData.City() -> string!
+Munchausen.AddressData.Country() -> string!
+Munchausen.AddressData.CountryCode() -> string!
+Munchausen.AddressData.Latitude() -> double
+Munchausen.AddressData.Longitude() -> double
+Munchausen.AddressData.PostalCode() -> string!
+Munchausen.AddressData.State() -> string!
+Munchausen.AddressData.StreetAddress() -> string!
+Munchausen.CommerceData
+Munchausen.CommerceData.Category() -> string!
+Munchausen.CommerceData.CurrencyCode() -> string!
+Munchausen.CommerceData.Price(decimal minInclusive = 1, decimal maxInclusive = 1000, int decimals = 2) -> decimal
+Munchausen.CommerceData.ProductName() -> string!
+Munchausen.CommerceData.Sku() -> string!
+Munchausen.DateData
+Munchausen.DateData.Between(System.DateTimeOffset minInclusive, System.DateTimeOffset maxInclusive) -> System.DateTimeOffset
+Munchausen.DateData.BirthDate(int minAgeInclusive = 18, int maxAgeInclusive = 80) -> System.DateTimeOffset
+Munchausen.DateData.Future(int years = 10) -> System.DateTimeOffset
+Munchausen.DateData.Past(int years = 10) -> System.DateTimeOffset
+Munchausen.DateData.Recent(int days = 30) -> System.DateTimeOffset
+Munchausen.DateData.ReferenceTime.get -> System.DateTimeOffset
+Munchausen.DateData.Soon(int days = 30) -> System.DateTimeOffset
+Munchausen.GenerationContext.Address.get -> Munchausen.AddressData!
+Munchausen.GenerationContext.Dataset<TDataset>() -> TDataset
+Munchausen.GenerationContext.Date.get -> Munchausen.DateData!
+Munchausen.GenerationContext.Internet.get -> Munchausen.InternetData!
+Munchausen.GenerationContext.Lorem.get -> Munchausen.LoremData!
+Munchausen.GenerationContext.Name.get -> Munchausen.NameData!
+Munchausen.GenerationContext.Random.get -> Munchausen.RandomData!
+Munchausen.InternetData
+Munchausen.InternetData.DomainName() -> string!
+Munchausen.InternetData.Email() -> string!
+Munchausen.InternetData.Email(string! firstName, string! lastName) -> string!
+Munchausen.InternetData.IpAddress() -> string!
+Munchausen.InternetData.Url() -> string!
+Munchausen.InternetData.UserName() -> string!
+Munchausen.LoremData
+Munchausen.LoremData.Paragraph() -> string!
+Munchausen.LoremData.Sentence() -> string!
+Munchausen.LoremData.Text(int maxLengthInclusive) -> string!
+Munchausen.LoremData.Word() -> string!
+Munchausen.LoremData.Words(int count) -> string!
+Munchausen.NameData
+Munchausen.NameData.First() -> string!
+Munchausen.NameData.FullName() -> string!
+Munchausen.NameData.Last() -> string!
+Munchausen.RandomData
+Munchausen.RandomData.AlphaNumeric(int length) -> string!
+Munchausen.RandomData.Bool(double probability = 0.5) -> bool
+Munchausen.RandomData.Bytes(int length) -> byte[]!
+Munchausen.RandomData.Decimal(decimal minInclusive, decimal maxInclusive, int decimals = 2) -> decimal
+Munchausen.RandomData.Double(double minInclusive = 0, double maxInclusive = 1) -> double
+Munchausen.RandomData.Enum<TEnum>() -> TEnum
+Munchausen.RandomData.Guid() -> System.Guid
+Munchausen.RandomData.Int(int minInclusive = -2147483648, int maxInclusive = 2147483647) -> int
+Munchausen.RandomData.Long(long minInclusive = -9223372036854775808, long maxInclusive = 9223372036854775807) -> long
+Munchausen.RandomData.Pick<T>(params T[]! values) -> T
+Munchausen.RandomData.Pick<T>(System.Collections.Generic.IReadOnlyList<T>! values) -> T
+Munchausen.RandomData.Sample<T>(System.Collections.Generic.IReadOnlyList<T>! values, int count, bool replacement = false) -> System.Collections.Generic.IReadOnlyList<T>!
+Munchausen.RandomData.String(int length) -> string!
+Munchausen.RandomData.Weighted<T>(System.Collections.Generic.IReadOnlyList<Munchausen.WeightedValue<T>>! values) -> T
+Munchausen.VehicleData
+Munchausen.VehicleData.Make() -> string!
+Munchausen.VehicleData.Model() -> string!
+Munchausen.VehicleData.Model(string! make) -> string!
+Munchausen.VehicleData.Vin() -> string!
+Munchausen.VehicleData.Year() -> int
+Munchausen.WeightedValue<T>
+Munchausen.WeightedValue<T>.Value.get -> T
+Munchausen.WeightedValue<T>.Value.init -> void
+Munchausen.WeightedValue<T>.Weight.get -> double
+Munchausen.WeightedValue<T>.Weight.init -> void
+Munchausen.WeightedValue<T>.WeightedValue() -> void
+Munchausen.WeightedValue<T>.WeightedValue(T Value, double Weight) -> void

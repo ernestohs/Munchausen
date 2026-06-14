@@ -30,6 +30,15 @@ internal static class TypeDefaultGenerators
         [typeof(char)] = context => (char)context.Random.Int('a', 'z'),
         [typeof(Guid)] = context => context.Random.Guid(),
         [typeof(byte[])] = context => context.Random.Bytes(16),
+
+        // Dataset-backed defaults (bound in M7).
+        [typeof(string)] = context => context.Lorem.Words(2),
+        [typeof(Uri)] = context => new Uri(context.Internet.Url()),
+        [typeof(DateTime)] = context => context.Date.Recent(365).UtcDateTime,
+        [typeof(DateTimeOffset)] = context => context.Date.Recent(365),
+        [typeof(DateOnly)] = context => DateOnly.FromDateTime(context.Date.Recent(365).UtcDateTime),
+        [typeof(TimeOnly)] = context => new TimeOnly(context.Random.Long(0, TimeSpan.TicksPerDay - 1)),
+        [typeof(TimeSpan)] = context => TimeSpan.FromSeconds(context.Random.Int(0, 86399)),
     };
 
     /// <summary>The pure generator for <paramref name="type"/>, or null if it binds in M7.</summary>

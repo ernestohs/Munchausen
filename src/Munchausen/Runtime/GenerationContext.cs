@@ -4,9 +4,9 @@ namespace Munchausen;
 
 /// <summary>
 /// The façade passed to user rules during generation, exposing the operation's
-/// randomness, datasets, reference time, and services. Dataset members bind in
-/// later milestones. A context is valid only during the generation call that
-/// supplied it; capturing it and reading it later observes the final state.
+/// randomness, datasets, reference time, and member context. A context is valid
+/// only during the generation call that supplied it; capturing it and reading it
+/// later observes the final state.
 /// </summary>
 public sealed class GenerationContext
 {
@@ -23,7 +23,24 @@ public sealed class GenerationContext
     /// <summary>The member path currently being generated, e.g. <c>Owner.Email</c>.</summary>
     public string MemberPath => _operation.Path.ToMemberPath();
 
-    internal Munchausen.Runtime.DeterministicRandom Random => _operation.Random;
+    /// <summary>Primitive random values and choices.</summary>
+    public RandomData Random => Dataset<RandomData>();
 
-    internal DateTimeOffset ReferenceTime => _operation.ReferenceTime;
+    /// <summary>Dates relative to the operation's reference time.</summary>
+    public DateData Date => Dataset<DateData>();
+
+    /// <summary>Personal names.</summary>
+    public NameData Name => Dataset<NameData>();
+
+    /// <summary>Internet identifiers.</summary>
+    public InternetData Internet => Dataset<InternetData>();
+
+    /// <summary>Postal addresses and geography.</summary>
+    public AddressData Address => Dataset<AddressData>();
+
+    /// <summary>Lorem-style filler text.</summary>
+    public LoremData Lorem => Dataset<LoremData>();
+
+    /// <summary>Resolves a dataset by type, cached one instance per operation.</summary>
+    public TDataset Dataset<TDataset>() => (TDataset)_operation.ResolveDataset(typeof(TDataset));
 }

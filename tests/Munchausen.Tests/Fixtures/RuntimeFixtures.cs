@@ -86,3 +86,9 @@ public sealed class CancelDerive
     public int Trigger { get; set; }
     public int Derived { get; set; }
 }
+
+/// <summary>A phone member resolves to the internal 555-01xx generator.</summary>
+public sealed class PhoneHolder
+{
+    public string Phone { get; set; } = string.Empty;
+}

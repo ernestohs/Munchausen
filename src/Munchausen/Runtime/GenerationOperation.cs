@@ -1,5 +1,6 @@
 using System.Reflection;
 using Munchausen.Compilation;
+using Munchausen.Datasets;
 
 namespace Munchausen.Runtime;
 
@@ -17,6 +18,7 @@ internal sealed class GenerationOperation
     private readonly CancellationToken _cancellation;
     private readonly int _maximumDepth;
     private readonly CycleBehavior _cycleBehavior;
+    private readonly Dictionary<Type, object> _datasets = new();
 
     public GenerationOperation(GenerationPlan plan, GenerationOptions? options, CancellationToken cancellation)
     {
@@ -50,6 +52,20 @@ internal sealed class GenerationOperation
     public PathStack Path { get; } = new();
 
     public long Index { get; private set; }
+
+    /// <summary>Resolves a built-in dataset, cached one instance per operation.</summary>
+    public object ResolveDataset(Type type)
+    {
+        if (_datasets.TryGetValue(type, out object? existing))
+        {
+            return existing;
+        }
+
+        object created = BuiltInDatasets.Create(type, Random, ReferenceTime)
+            ?? throw new InvalidOperationException($"No dataset is registered for {type}.");
+        _datasets[type] = created;
+        return created;
+    }
 
     public object GenerateRoot(long index)
     {
