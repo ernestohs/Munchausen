@@ -1,12 +1,12 @@
 namespace Munchausen.Tests.Fixtures;
 
-/// <summary>A required member of an unsupported type — triggers LIE003.</summary>
+/// <summary>A required member of an unsupported type. Triggers LIE003.</summary>
 public sealed class RequiredUnsupportedModel
 {
     public required IComparable Thing { get; set; }
 }
 
-/// <summary>One of several constructors is marked — attribute selection.</summary>
+/// <summary>One of several constructors is marked, for attribute selection.</summary>
 public sealed class AttributeCtorModel
 {
     public AttributeCtorModel()
@@ -23,7 +23,7 @@ public sealed class AttributeCtorModel
     public string? Label { get; set; }
 }
 
-/// <summary>Parameterless vs a richer constructor — most-resolvable wins.</summary>
+/// <summary>Parameterless vs a richer constructor; most-resolvable wins.</summary>
 public sealed class MostResolvableModel
 {
     public MostResolvableModel()
@@ -41,7 +41,7 @@ public sealed class MostResolvableModel
     public int Count { get; set; }
 }
 
-/// <summary>Parameterless ties with an unresolvable constructor — prefer parameterless.</summary>
+/// <summary>Parameterless ties with an unresolvable constructor; prefer parameterless.</summary>
 public sealed class ParameterlessTieModel
 {
     public ParameterlessTieModel()
@@ -53,7 +53,7 @@ public sealed class ParameterlessTieModel
     private readonly IComparable? _unused;
 }
 
-/// <summary>Two equally resolvable constructors, no parameterless — ambiguous (LIE004).</summary>
+/// <summary>Two equally resolvable constructors, no parameterless; ambiguous (LIE004).</summary>
 public sealed class AmbiguousCtorModel
 {
     public AmbiguousCtorModel(string a) => A = a;

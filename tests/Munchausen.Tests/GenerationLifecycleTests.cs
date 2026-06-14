@@ -12,11 +12,11 @@ public sealed class GenerationLifecycleTests
         var log = new List<string>();
         LieDefinition<LifecycleModel> definition = Lie.Define<LifecycleModel>()
             .ConstructWith(_ => { log.Add("ctor"); return new LifecycleModel(); })
-            // Registered B, A, C — population must still run in declaration order A, B, C.
+            // Registered B, A, C; population must still run in declaration order A, B, C.
             .With(m => m.B, _ => { log.Add("B"); return 2; })
             .With(m => m.A, _ => { log.Add("A"); return 1; })
             .With(m => m.C, _ => { log.Add("C"); return 3; })
-            // Registered E before D — derivations must run in registration order E, D.
+            // Registered E before D; derivations must run in registration order E, D.
             .Derive(m => m.E, (_, _) => { log.Add("E"); return 5; })
             .Derive(m => m.D, (_, _) => { log.Add("D"); return 4; })
             .Build();

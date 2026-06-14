@@ -5,7 +5,7 @@ namespace Munchausen.Inference;
 /// <summary>
 /// Per-member context handed to each inference stage. Built from a property's
 /// <see cref="MemberMetadata"/> or, for a constructor parameter, from its raw
-/// name and type — so parameters and properties share one inference pipeline.
+/// name and type, so parameters and properties share one inference pipeline.
 /// </summary>
 internal sealed class MemberInferenceContext
 {

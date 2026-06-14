@@ -6,8 +6,8 @@ namespace Munchausen.Compilation;
 /// <summary>
 /// The single place that enforces the v1.0 member-targeting rule: an expression
 /// must be exactly <c>x =&gt; x.Property</c> (optionally with the compiler's
-/// boxing <c>Convert</c> around a value-type member). Anything else — nested
-/// paths, method calls, indexers, a non-parameter root — is rejected with LIE001.
+/// boxing <c>Convert</c> around a value-type member). Anything else (nested
+/// paths, method calls, indexers, a non-parameter root) is rejected with LIE001.
 /// </summary>
 internal sealed class ExpressionMemberResolver
 {

@@ -20,7 +20,7 @@ public sealed class LifecycleModel
     public int E { get; set; }
 }
 
-/// <summary>Directly self-referential — terminates by cycle at depth 1.</summary>
+/// <summary>Directly self-referential; terminates by cycle at depth 1.</summary>
 public sealed class Node
 {
     public Guid Id { get; set; }
@@ -55,7 +55,7 @@ public sealed class Outer
     public Middle? Middle { get; set; }
 }
 
-/// <summary>Self-referential collection — terminates as empty.</summary>
+/// <summary>Self-referential collection; terminates as empty.</summary>
 public sealed class TreeNode
 {
     public Guid Id { get; set; }

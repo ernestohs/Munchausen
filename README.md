@@ -3,8 +3,8 @@
 <img width="1024" height="434" alt="image" src="https://github.com/user-attachments/assets/c9f3b14f-0705-4b6a-9981-559c937c2744" />
 
 **Inference-first mock-data generation for .NET.** Point Munchausen at one of your
-types and it hands back believable instances — names that look like names, emails
-that look like emails, prices that look like money — filling in nested objects and
+types and it hands back believable instances (names that look like names, emails
+that look like emails, prices that look like money), filling in nested objects and
 collections for free, with no configuration required. When you do want control, a
 small fluent API lets you pin individual members, and everything is reproducible
 from a seed.
@@ -25,15 +25,15 @@ IReadOnlyList<Customer> hundred = Lie<Customer>.Generate(100);
   realistic values automatically. `FirstName` becomes a first name, `Email` becomes
   an email, `CreatedAt` becomes a recent past date, `Price` becomes positive money.
 - **Reproducible by design.** The same type, definition, and seed produce the same
-  data — on every machine, OS, and runtime. Commit a seed and your fixtures are
+  data, on every machine, OS, and runtime. Commit a seed and your fixtures are
   stable forever.
 - **Fast.** All reflection, parsing, and inference happen once when you build a
   definition (or first touch `Lie<T>`). Generating objects after that does no
   per-object reflection.
-- **Explainable.** Inferred behavior is never a black box — ask a definition to
+- **Explainable.** Inferred behavior is never a black box: ask a definition to
   explain exactly what it decided for each member, and why.
 - **Fluent when you need it.** Override any member, derive values from siblings,
-  ignore or preserve fields, supply your own constructor — without losing inference
+  ignore or preserve fields, supply your own constructor, without losing inference
   for everything you didn't touch.
 
 ## Requirements
@@ -161,10 +161,10 @@ var defs = Lie.Define<Product>()
     .Build();
 ```
 
-- `Conservative` — high-confidence matches only.
-- `Balanced` — high and medium confidence. **(default)**
-- `Aggressive` — also accepts low-confidence matches.
-- `Disabled` — skip semantic matching; use type inference only.
+- `Conservative`: high-confidence matches only.
+- `Balanced`: high and medium confidence. **(default)**
+- `Aggressive`: also accepts low-confidence matches.
+- `Disabled`: skip semantic matching; use type inference only.
 
 Rejected candidates fall back to type inference, so output is always *something*
 reasonable.
@@ -186,7 +186,7 @@ var b = def.Generate(100, new GenerationOptions { Seed = 7 }); // overrides to 7
 
 Date and time generation uses a single **reference time** resolved once per call
 (from options, the definition default, an injected `TimeProvider`, or the current
-UTC time) — it never reads the clock repeatedly mid-batch, so dated output is
+UTC time). It never reads the clock repeatedly mid-batch, so dated output is
 reproducible too:
 
 ```csharp
@@ -218,15 +218,15 @@ var users = Lie.Define<User>()
 
 First-class datasets on the context:
 
-- `data.Random` — primitives and choices: `Int`, `Long`, `Decimal`, `Double`,
+- `data.Random` for primitive values and choices: `Int`, `Long`, `Decimal`, `Double`,
   `Bool`, `Guid`, `Bytes`, `Pick`, `Weighted`, `Sample`, `Enum`, and more (all
   numeric bounds are inclusive).
-- `data.Name` — `First`, `Last`, `FullName`.
-- `data.Internet` — `Email`, `UserName`, `DomainName`, `Url`, `IpAddress`.
-- `data.Address` — `StreetAddress`, `City`, `State`, `PostalCode`, `Country`,
+- `data.Name`: `First`, `Last`, `FullName`.
+- `data.Internet`: `Email`, `UserName`, `DomainName`, `Url`, `IpAddress`.
+- `data.Address`: `StreetAddress`, `City`, `State`, `PostalCode`, `Country`,
   `CountryCode`, `Latitude`, `Longitude`.
-- `data.Date` — `Past`, `Recent`, `Soon`, `Future`, `Between`, `BirthDate`.
-- `data.Lorem` — `Word`, `Words`, `Sentence`, `Paragraph`, `Text`.
+- `data.Date`: `Past`, `Recent`, `Soon`, `Future`, `Between`, `BirthDate`.
+- `data.Lorem`: `Word`, `Words`, `Sentence`, `Paragraph`, `Text`.
 
 Two more ship in the box and are reached generically:
 
@@ -271,7 +271,7 @@ var employees = Lie.Define<Employee>()
 
 Reference cycles are detected along the active path, so a self-referential
 `Employee.Manager` terminates safely (as `null` under `Terminate`) while two
-siblings of the same type — say a billing and a shipping address — are both
+siblings of the same type (say a billing and a shipping address) are both
 generated. Under `Terminate`, depth limits resolve nullable references to `null`
 and collections to empty.
 
@@ -317,8 +317,8 @@ Console.WriteLine(report.ToText());
 //   Car.Owner -> (nested object) [nested object]
 ```
 
-The report is structured data too — `report.Members` gives the source, generator,
-and confidence per member — so you can build tooling on top of it. The exact text
+The report is structured data too: `report.Members` gives the source, generator,
+and confidence per member, so you can build tooling on top of it. The exact text
 of `ToText()` is for humans and may change between versions; the structured model
 is the stable contract.
 
@@ -360,7 +360,7 @@ standard `OperationCanceledException`.
 - Semantic + type inference, with selectable confidence modes.
 - Reproducible, owned PRNG; fixed per-call reference time; `TimeProvider` support.
 - Built-in datasets for names, internet, addresses, dates, lorem, vehicles, and
-  commerce — plus a full primitive `Random` surface.
+  commerce, plus a full primitive `Random` surface.
 - Automatic nested objects and collections with depth and cycle safety.
 - Records, immutable models, and custom constructors.
 - Structured, explainable inference.

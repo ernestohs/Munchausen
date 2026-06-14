@@ -4,7 +4,7 @@ namespace Munchausen.Inference;
 /// Normalizes a member or hint name per the catalog's matching rules: split on
 /// case transitions, underscores, and hyphens, lowercase, and join. Because the
 /// tokens are rejoined with no separator, this is equivalent to stripping
-/// underscores/hyphens and lowercasing — <c>FirstName</c>, <c>first_name</c>, and
+/// underscores/hyphens and lowercasing, so <c>FirstName</c>, <c>first_name</c>, and
 /// <c>FIRST-NAME</c> all normalize to <c>firstname</c>.
 /// </summary>
 internal static class MemberNameNormalizer

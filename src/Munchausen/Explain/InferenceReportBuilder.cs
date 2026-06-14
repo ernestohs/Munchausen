@@ -3,7 +3,7 @@ using Munchausen.Compilation;
 namespace Munchausen.Explain;
 
 /// <summary>
-/// Builds an <see cref="InferenceReport"/> by walking a frozen plan — a pure read,
+/// Builds an <see cref="InferenceReport"/> by walking a frozen plan (a pure read),
 /// generating nothing. Nested members appear as a single entry; recursive child
 /// types are not expanded.
 /// </summary>

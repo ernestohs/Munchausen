@@ -34,7 +34,7 @@ internal sealed class DeterministicRandom
     internal DeterministicRandom(Xoshiro256StarStar engine)
         => _engine = engine;
 
-    /// <summary>Raw 64-bit draw — the primitive every helper consumes.</summary>
+    /// <summary>Raw 64-bit draw: the primitive every helper consumes.</summary>
     public ulong NextULong() => _engine.Next();
 
     public bool Bool(double probability = 0.5)

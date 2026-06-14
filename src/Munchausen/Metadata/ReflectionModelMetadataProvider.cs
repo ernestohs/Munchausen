@@ -9,7 +9,7 @@ namespace Munchausen.Metadata;
 /// Reflection-based <see cref="IModelMetadataProvider"/>. Results are immutable
 /// and cached process-wide (pure derived data, so the no-mutable-globals rule
 /// holds). Member order is fixed by <see cref="MemberInfo.MetadataToken"/>, which
-/// matches source declaration order for a given compiled assembly — reordering
+/// matches source declaration order for a given compiled assembly. Reordering
 /// model source therefore changes seeded output, by design.
 /// </summary>
 internal sealed class ReflectionModelMetadataProvider : IModelMetadataProvider
