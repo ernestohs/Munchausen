@@ -1,0 +1,158 @@
+name: Quality
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  # Manual runs validate the whole pipeline (including benchmarks) on any branch
+  # without writing to the trend history; only pushes to master do that.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize runs so concurrent jobs never race on the gh-pages branch.
+concurrency:
+  group: quality
+  cancel-in-progress: false
+
+jobs:
+  coverage:
+    name: Coverage & size
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test with coverage
+        run: >
+          dotnet test --no-build --configuration Release
+          --collect:"XPlat Code Coverage"
+          --results-directory ./coverage
+
+      - name: Build coverage report
+        run: |
+          export PATH="$PATH:$HOME/.dotnet/tools"
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator \
+            -reports:"coverage/**/coverage.cobertura.xml" \
+            -targetdir:"coverage/report" \
+            -reporttypes:"Html;MarkdownSummaryGithub;JsonSummary" \
+            -assemblyfilters:"+Munchausen"
+
+      - name: Build trend data and job summary
+        run: |
+          python3 - <<'PY'
+          import json, os
+
+          os.makedirs("artifacts", exist_ok=True)
+          s = json.load(open("coverage/report/Summary.json"))["summary"]
+          size_kb = round(
+              os.path.getsize("src/Munchausen/bin/Release/net8.0/Munchausen.dll") / 1024, 1)
+
+          # gh-pages trend series (github-action-benchmark custom format).
+          bigger = [
+              {"name": "Line coverage", "unit": "%", "value": s["linecoverage"]},
+              {"name": "Branch coverage", "unit": "%", "value": s.get("branchcoverage") or 0},
+              {"name": "Method coverage", "unit": "%", "value": s.get("methodcoverage") or 0},
+          ]
+          smaller = [{"name": "Assembly size", "unit": "KB", "value": size_kb}]
+          json.dump(bigger, open("artifacts/coverage.json", "w"))
+          json.dump(smaller, open("artifacts/size.json", "w"))
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as out:
+              out.write("## Munchausen quality snapshot\n\n")
+              out.write("| Metric | Value |\n| --- | ---: |\n")
+              out.write(f"| Line coverage | {s['linecoverage']:.1f}% |\n")
+              out.write(f"| Branch coverage | {s.get('branchcoverage') or 0:.1f}% |\n")
+              out.write(f"| Method coverage | {s.get('methodcoverage') or 0:.1f}% |\n")
+              out.write(f"| Lines of code (coverable) | {s['coverablelines']} |\n")
+              out.write(f"| Assembly size | {size_kb} KB |\n\n")
+          PY
+          cat coverage/report/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/report
+
+      - name: Track coverage (higher is better)
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Coverage
+          tool: customBiggerIsBetter
+          output-file-path: artifacts/coverage.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          benchmark-data-dir-path: dev/coverage
+          auto-push: ${{ github.event_name == 'push' }}
+          save-data-file: ${{ github.event_name == 'push' }}
+          summary-always: true
+          comment-on-alert: true
+          alert-threshold: '110%'
+          fail-on-alert: false
+
+      - name: Track assembly size (lower is better)
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Assembly size
+          tool: customSmallerIsBetter
+          output-file-path: artifacts/size.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          benchmark-data-dir-path: dev/size
+          auto-push: ${{ github.event_name == 'push' }}
+          save-data-file: ${{ github.event_name == 'push' }}
+          summary-always: true
+          comment-on-alert: true
+          alert-threshold: '125%'
+          fail-on-alert: false
+
+  benchmark:
+    name: Benchmarks
+    runs-on: ubuntu-latest
+    needs: coverage
+    # Benchmarks are expensive and noisy on shared runners. Skip them on PRs;
+    # run on master pushes (records the trend) and on manual dispatch (dry run).
+    if: github.event_name != 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Run benchmarks
+        run: >
+          dotnet run --project tests/Munchausen.Benchmarks --configuration Release
+          -- --filter '*' --exporters json
+
+      - name: Upload raw benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: BenchmarkDotNet.Artifacts/results
+
+      - name: Track benchmark trend
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          name: Munchausen benchmarks
+          tool: benchmarkdotnet
+          output-file-path: BenchmarkDotNet.Artifacts/results/Munchausen.Benchmarks.GenerationBenchmarks-report-full-compressed.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          benchmark-data-dir-path: dev/bench
+          auto-push: ${{ github.event_name == 'push' }}
+          save-data-file: ${{ github.event_name == 'push' }}
+          summary-always: true
+          comment-on-alert: true
+          alert-threshold: '200%'
+          fail-on-alert: false
