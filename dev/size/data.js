@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782144794975,
+  "lastUpdate": 1782146391297,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Assembly size": [
@@ -168,6 +168,35 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/ernestohs/Munchausen/commit/23b6a42cc446189ab20cb7b5a0bd027142c4efe1"
         },
         "date": 1782144794956,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Assembly size",
+            "value": 129.5,
+            "unit": "KB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "82cb700ca6fe5de929b46fcb6e8a1de550f0a8ca",
+          "message": "Bump Microsoft.NET.Test.Sdk from 17.11.1 to 18.6.0 (#19)\n\n---\nupdated-dependencies:\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.6.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.6.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.6.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: /dev/10x <ernesto@talos-lab.ai>",
+          "timestamp": "2026-06-22T10:38:50-06:00",
+          "tree_id": "50e236e01e79abe9c589811db619d8ed08070881",
+          "url": "https://github.com/ernestohs/Munchausen/commit/82cb700ca6fe5de929b46fcb6e8a1de550f0a8ca"
+        },
+        "date": 1782146391276,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
