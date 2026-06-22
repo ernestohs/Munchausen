@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782116061853,
+  "lastUpdate": 1782118651497,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Assembly size": [
@@ -23,6 +23,35 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/ernestohs/Munchausen/commit/9a87786033c7f76541e76e3baf5c1ca39863facf"
         },
         "date": 1782116061835,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Assembly size",
+            "value": 129.5,
+            "unit": "KB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ernesto@talos-lab.ai",
+            "name": "/dev/10x",
+            "username": "ernestohs"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "45fcd067510678ad96212c8473575aac6e3c9a33",
+          "message": "Update release (#14)",
+          "timestamp": "2026-06-22T02:56:45-06:00",
+          "tree_id": "6c78efda580ab357f5c8530720c13948304398f9",
+          "url": "https://github.com/ernestohs/Munchausen/commit/45fcd067510678ad96212c8473575aac6e3c9a33"
+        },
+        "date": 1782118651478,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
