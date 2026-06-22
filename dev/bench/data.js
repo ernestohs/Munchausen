@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782142020646,
+  "lastUpdate": 1782142653245,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Munchausen benchmarks": [
@@ -216,6 +216,60 @@ window.BENCHMARK_DATA = {
             "value": 3122.5273933410645,
             "unit": "ns",
             "range": "± 4.10619537942974"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e6c08a4689a3a6a2e4f2df312243969c02ac1808",
+          "message": "Bump actions/upload-artifact from 4 to 7 (#17)\n\nBumps [actions/upload-artifact](https://github.com/actions/upload-artifact) from 4 to 7.\n- [Release notes](https://github.com/actions/upload-artifact/releases)\n- [Commits](https://github.com/actions/upload-artifact/compare/v4...v7)\n\n---\nupdated-dependencies:\n- dependency-name: actions/upload-artifact\n  dependency-version: '7'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-06-22T09:34:10-06:00",
+          "tree_id": "c89b33602b206a496a7cce2f869372b79ead0249",
+          "url": "https://github.com/ernestohs/Munchausen/commit/e6c08a4689a3a6a2e4f2df312243969c02ac1808"
+        },
+        "date": 1782142652885,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.BuildWarm",
+            "value": 2423839.0643028845,
+            "unit": "ns",
+            "range": "± 17783.970294973245"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCar",
+            "value": 1736.7710287911552,
+            "unit": "ns",
+            "range": "± 9.219920690677453"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCars",
+            "value": 1115740.2865885417,
+            "unit": "ns",
+            "range": "± 2211.7504147161108"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCustomerWithCollection",
+            "value": 5897.711029639611,
+            "unit": "ns",
+            "range": "± 17.40790105551649"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.PrngThroughput",
+            "value": 3386.8287130991616,
+            "unit": "ns",
+            "range": "± 6.481791266357326"
           }
         ]
       }
