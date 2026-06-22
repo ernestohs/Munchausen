@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <!-- Example models declare plain non-nullable properties (as in the README)
+         and let Munchausen populate them, so CS8618 is not meaningful here. -->
+    <NoWarn>$(NoWarn);CS8618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Munchausen\Munchausen.csproj" />
+  </ItemGroup>
+
+</Project>

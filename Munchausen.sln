@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munchausen.DeterminismTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munchausen.Benchmarks", "tests\Munchausen.Benchmarks\Munchausen.Benchmarks.csproj", "{54933E98-3DCE-492B-B7FB-F5932ED2D9A5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{AB6D138B-9342-45A8-B467-3C6F95A7BBE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Munchausen.Examples", "examples\Munchausen.Examples\Munchausen.Examples.csproj", "{5DCE3B92-AB94-4B34-B3A1-DBD2E35D4075}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,10 @@ Global
 		{54933E98-3DCE-492B-B7FB-F5932ED2D9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54933E98-3DCE-492B-B7FB-F5932ED2D9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54933E98-3DCE-492B-B7FB-F5932ED2D9A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DCE3B92-AB94-4B34-B3A1-DBD2E35D4075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DCE3B92-AB94-4B34-B3A1-DBD2E35D4075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DCE3B92-AB94-4B34-B3A1-DBD2E35D4075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DCE3B92-AB94-4B34-B3A1-DBD2E35D4075}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F6A3A25-B1CC-4D46-B80F-D15DA1B8E60B} = {29D33AEA-629C-4529-B86E-FF189E7E5436}
@@ -60,5 +68,6 @@ Global
 		{9AE5BB6D-3207-4A4A-9A68-82C529817863} = {55322751-1D68-4B34-917C-A449F0D5DCA6}
 		{E06C9869-8533-4EA7-B56B-D38A412A608A} = {55322751-1D68-4B34-917C-A449F0D5DCA6}
 		{54933E98-3DCE-492B-B7FB-F5932ED2D9A5} = {55322751-1D68-4B34-917C-A449F0D5DCA6}
+		{5DCE3B92-AB94-4B34-B3A1-DBD2E35D4075} = {AB6D138B-9342-45A8-B467-3C6F95A7BBE6}
 	EndGlobalSection
 EndGlobal
