@@ -292,3 +292,7 @@ __pycache__/
 # Build output
 [Bb]in/
 [Oo]bj/
+
+# Test and benchmark output
+[Tt]est[Rr]esult*/
+BenchmarkDotNet.Artifacts/
