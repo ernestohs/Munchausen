@@ -9,11 +9,10 @@
     <NoWarn>$(NoWarn);RS0026;RS0027</NoWarn>
   </PropertyGroup>
 
-  <!-- NuGet package metadata. Version is supplied by the release workflow (from the tag). -->
+  <!-- NuGet package metadata. Version is derived from the git tag by MinVer (below). -->
   <PropertyGroup>
     <PackageId>Munchausen</PackageId>
     <Title>Munchausen</Title>
-    <Version>1.0.0</Version>
     <Authors>Ernesto Herrera Salinas</Authors>
     <Company>Ernesto Herrera Salinas</Company>
     <Product>Munchausen</Product>
@@ -42,7 +41,15 @@
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <!-- Version comes from the nearest 'v*' git tag plus commit height. On 'release/x.y'
+       a 'vX.Y.0-rc.N' tag yields prerelease versions; on a stable 'vX.Y.Z' tag, that
+       exact version. Requires a non-shallow checkout (fetch-depth: 0) in CI. -->
+  <PropertyGroup>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="MinVer" Version="6.0.0" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.4" PrivateAssets="all" />
   </ItemGroup>
 
