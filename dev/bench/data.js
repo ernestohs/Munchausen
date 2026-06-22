@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782142653245,
+  "lastUpdate": 1782144933311,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Munchausen benchmarks": [
@@ -270,6 +270,60 @@ window.BENCHMARK_DATA = {
             "value": 3386.8287130991616,
             "unit": "ns",
             "range": "± 6.481791266357326"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "23b6a42cc446189ab20cb7b5a0bd027142c4efe1",
+          "message": "Bump coverlet.collector from 6.0.2 to 10.0.1 (#18)\n\n---\nupdated-dependencies:\n- dependency-name: coverlet.collector\n  dependency-version: 10.0.1\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n- dependency-name: coverlet.collector\n  dependency-version: 10.0.1\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n- dependency-name: coverlet.collector\n  dependency-version: 10.0.1\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-06-22T10:12:30-06:00",
+          "tree_id": "c3ef6995efed2817415df585b177fc010b882f9a",
+          "url": "https://github.com/ernestohs/Munchausen/commit/23b6a42cc446189ab20cb7b5a0bd027142c4efe1"
+        },
+        "date": 1782144931782,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.BuildWarm",
+            "value": 2397326.8255208335,
+            "unit": "ns",
+            "range": "± 5661.156765342607"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCar",
+            "value": 1731.5680054982504,
+            "unit": "ns",
+            "range": "± 12.436347075678395"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCars",
+            "value": 1110370.6260516827,
+            "unit": "ns",
+            "range": "± 4087.0543296847545"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCustomerWithCollection",
+            "value": 5882.178173700969,
+            "unit": "ns",
+            "range": "± 12.087829673828798"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.PrngThroughput",
+            "value": 3382.825035367693,
+            "unit": "ns",
+            "range": "± 1.1876385104115843"
           }
         ]
       }
