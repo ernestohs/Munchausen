@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Munchausen — Quality Dashboards</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      max-width: 40rem;
+      margin: 4rem auto;
+      padding: 0 1.25rem;
+      line-height: 1.5;
+    }
+    h1 { margin-bottom: 0.25rem; }
+    p.lead { color: #666; margin-top: 0; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 0.75rem 0; }
+    a.card {
+      display: block;
+      padding: 1rem 1.25rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    a.card:hover { border-color: #888; }
+    a.card strong { display: block; font-size: 1.05rem; }
+    a.card span { color: #666; font-size: 0.9rem; }
+    footer { margin-top: 3rem; font-size: 0.85rem; color: #888; }
+  </style>
+</head>
+<body>
+  <h1>Munchausen</h1>
+  <p class="lead">Continuous quality &amp; performance trends, updated on every push to <code>master</code>.</p>
+  <ul>
+    <li>
+      <a class="card" href="./dev/bench/">
+        <strong>Benchmarks</strong>
+        <span>Generation throughput over time (BenchmarkDotNet).</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="./dev/coverage/">
+        <strong>Coverage</strong>
+        <span>Line, branch, and method coverage trends.</span>
+      </a>
+    </li>
+    <li>
+      <a class="card" href="./dev/size/">
+        <strong>Assembly size</strong>
+        <span>Compiled <code>Munchausen.dll</code> size over time.</span>
+      </a>
+    </li>
+  </ul>
+  <footer>
+    <a href="https://github.com/ernestohs/Munchausen">Source on GitHub</a>
+  </footer>
+</body>
+</html>
