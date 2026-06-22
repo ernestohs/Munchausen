@@ -1,0 +1,202 @@
+#nullable enable
+Munchausen.CollectionSize
+Munchausen.CollectionSize.CollectionSize() -> void
+Munchausen.CollectionSize.MaxCount.get -> int
+Munchausen.CollectionSize.MinCount.get -> int
+Munchausen.CycleBehavior
+Munchausen.CycleBehavior.Terminate = 0 -> Munchausen.CycleBehavior
+Munchausen.CycleBehavior.Throw = 1 -> Munchausen.CycleBehavior
+Munchausen.GenerationContext
+Munchausen.GenerationDefaults
+Munchausen.GenerationDefaults.CycleBehavior.get -> Munchausen.CycleBehavior?
+Munchausen.GenerationDefaults.CycleBehavior.init -> void
+Munchausen.GenerationDefaults.MaximumDepth.get -> int?
+Munchausen.GenerationDefaults.MaximumDepth.init -> void
+Munchausen.GenerationDefaults.ReferenceTime.get -> System.DateTimeOffset?
+Munchausen.GenerationDefaults.ReferenceTime.init -> void
+Munchausen.GenerationDefaults.Seed.get -> int?
+Munchausen.GenerationDefaults.Seed.init -> void
+Munchausen.GenerationDefaults.SemanticInference.get -> Munchausen.SemanticInferenceMode?
+Munchausen.GenerationDefaults.SemanticInference.init -> void
+Munchausen.GenerationOptions
+Munchausen.GenerationOptions.ReferenceTime.get -> System.DateTimeOffset?
+Munchausen.GenerationOptions.ReferenceTime.init -> void
+Munchausen.GenerationOptions.Seed.get -> int?
+Munchausen.GenerationOptions.Seed.init -> void
+Munchausen.GenerationOptions.TimeProvider.get -> System.TimeProvider?
+Munchausen.GenerationOptions.TimeProvider.init -> void
+Munchausen.InferenceReport
+Munchausen.Lie
+Munchausen.Lie<T>
+Munchausen.LieConstructorAttribute
+Munchausen.LieConstructorAttribute.LieConstructorAttribute() -> void
+Munchausen.LieDefinition<T>
+Munchausen.LieDefinition<T>.Explain() -> Munchausen.InferenceReport!
+Munchausen.LieDefinition<T>.Generate(int count, Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IReadOnlyList<T>!
+Munchausen.LieDefinition<T>.Generate(Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> T
+Munchausen.LieDefinition<T>.Name.get -> string?
+Munchausen.LieDefinitionBuilder<T>
+Munchausen.LieDefinitionBuilder<T>.Build() -> Munchausen.LieDefinition<T>!
+Munchausen.LieDefinitionBuilder<T>.ConstructWith(System.Func<Munchausen.GenerationContext!, T>! constructor) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.Derive<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property, System.Func<Munchausen.GenerationContext!, T, TProperty>! generator) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.Ignore<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.Preserve<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.With<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property, System.Func<Munchausen.GenerationContext!, TProperty>! generator) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.With<TProperty>(System.Linq.Expressions.Expression<System.Func<T, TProperty>!>! property, TProperty value) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.WithDefaults(Munchausen.GenerationDefaults! defaults) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.WithName(string! name) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionBuilder<T>.WithSeed(int seed) -> Munchausen.LieDefinitionBuilder<T>!
+Munchausen.LieDefinitionException
+Munchausen.LieDefinitionException.Diagnostics.get -> System.Collections.Generic.IReadOnlyList<Munchausen.LieDiagnostic!>!
+Munchausen.LieDiagnostic
+Munchausen.LieDiagnostic.Code.get -> string!
+Munchausen.LieDiagnostic.Code.init -> void
+Munchausen.LieDiagnostic.LieDiagnostic(string! Code, Munchausen.LieDiagnosticSeverity Severity, string! Message, System.Type? ModelType = null, string? MemberPath = null) -> void
+Munchausen.LieDiagnostic.MemberPath.get -> string?
+Munchausen.LieDiagnostic.MemberPath.init -> void
+Munchausen.LieDiagnostic.Message.get -> string!
+Munchausen.LieDiagnostic.Message.init -> void
+Munchausen.LieDiagnostic.ModelType.get -> System.Type?
+Munchausen.LieDiagnostic.ModelType.init -> void
+Munchausen.LieDiagnostic.Severity.get -> Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnostic.Severity.init -> void
+Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnosticSeverity.Error = 2 -> Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnosticSeverity.Info = 0 -> Munchausen.LieDiagnosticSeverity
+Munchausen.LieDiagnosticSeverity.Warning = 1 -> Munchausen.LieDiagnosticSeverity
+Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Aggressive = 2 -> Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Balanced = 1 -> Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Conservative = 0 -> Munchausen.SemanticInferenceMode
+Munchausen.SemanticInferenceMode.Disabled = 3 -> Munchausen.SemanticInferenceMode
+static Munchausen.CollectionSize.Between(int minInclusive, int maxInclusive) -> Munchausen.CollectionSize
+static Munchausen.CollectionSize.Exactly(int count) -> Munchausen.CollectionSize
+static Munchausen.Lie.Define<T>() -> Munchausen.LieDefinitionBuilder<T>!
+static Munchausen.Lie<T>.Generate(int count, Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IReadOnlyList<T>!
+static Munchausen.Lie<T>.Generate(Munchausen.GenerationOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> T
+Munchausen.GenerationContext.Index.get -> long
+Munchausen.GenerationContext.Locale.get -> string!
+Munchausen.GenerationContext.MemberPath.get -> string!
+Munchausen.GenerationPhase
+Munchausen.GenerationPhase.AfterGenerateHook = 4 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.BeforeGenerateHook = 1 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.Construction = 0 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.Derivation = 3 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.MemberPopulation = 2 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.UniquenessCommit = 6 -> Munchausen.GenerationPhase
+Munchausen.GenerationPhase.Validation = 5 -> Munchausen.GenerationPhase
+Munchausen.LieException
+Munchausen.LieGenerationException
+Munchausen.LieGenerationException.GenerationIndex.get -> long
+Munchausen.LieGenerationException.MemberPath.get -> string!
+Munchausen.LieGenerationException.ModelType.get -> System.Type!
+Munchausen.LieGenerationException.Phase.get -> Munchausen.GenerationPhase
+Munchausen.AddressData
+Munchausen.AddressData.City() -> string!
+Munchausen.AddressData.Country() -> string!
+Munchausen.AddressData.CountryCode() -> string!
+Munchausen.AddressData.Latitude() -> double
+Munchausen.AddressData.Longitude() -> double
+Munchausen.AddressData.PostalCode() -> string!
+Munchausen.AddressData.State() -> string!
+Munchausen.AddressData.StreetAddress() -> string!
+Munchausen.CommerceData
+Munchausen.CommerceData.Category() -> string!
+Munchausen.CommerceData.CurrencyCode() -> string!
+Munchausen.CommerceData.Price(decimal minInclusive = 1, decimal maxInclusive = 1000, int decimals = 2) -> decimal
+Munchausen.CommerceData.ProductName() -> string!
+Munchausen.CommerceData.Sku() -> string!
+Munchausen.DateData
+Munchausen.DateData.Between(System.DateTimeOffset minInclusive, System.DateTimeOffset maxInclusive) -> System.DateTimeOffset
+Munchausen.DateData.BirthDate(int minAgeInclusive = 18, int maxAgeInclusive = 80) -> System.DateTimeOffset
+Munchausen.DateData.Future(int years = 10) -> System.DateTimeOffset
+Munchausen.DateData.Past(int years = 10) -> System.DateTimeOffset
+Munchausen.DateData.Recent(int days = 30) -> System.DateTimeOffset
+Munchausen.DateData.ReferenceTime.get -> System.DateTimeOffset
+Munchausen.DateData.Soon(int days = 30) -> System.DateTimeOffset
+Munchausen.GenerationContext.Address.get -> Munchausen.AddressData!
+Munchausen.GenerationContext.Dataset<TDataset>() -> TDataset
+Munchausen.GenerationContext.Date.get -> Munchausen.DateData!
+Munchausen.GenerationContext.Internet.get -> Munchausen.InternetData!
+Munchausen.GenerationContext.Lorem.get -> Munchausen.LoremData!
+Munchausen.GenerationContext.Name.get -> Munchausen.NameData!
+Munchausen.GenerationContext.Random.get -> Munchausen.RandomData!
+Munchausen.InternetData
+Munchausen.InternetData.DomainName() -> string!
+Munchausen.InternetData.Email() -> string!
+Munchausen.InternetData.Email(string! firstName, string! lastName) -> string!
+Munchausen.InternetData.IpAddress() -> string!
+Munchausen.InternetData.Url() -> string!
+Munchausen.InternetData.UserName() -> string!
+Munchausen.LoremData
+Munchausen.LoremData.Paragraph() -> string!
+Munchausen.LoremData.Sentence() -> string!
+Munchausen.LoremData.Text(int maxLengthInclusive) -> string!
+Munchausen.LoremData.Word() -> string!
+Munchausen.LoremData.Words(int count) -> string!
+Munchausen.NameData
+Munchausen.NameData.First() -> string!
+Munchausen.NameData.FullName() -> string!
+Munchausen.NameData.Last() -> string!
+Munchausen.RandomData
+Munchausen.RandomData.AlphaNumeric(int length) -> string!
+Munchausen.RandomData.Bool(double probability = 0.5) -> bool
+Munchausen.RandomData.Bytes(int length) -> byte[]!
+Munchausen.RandomData.Decimal(decimal minInclusive, decimal maxInclusive, int decimals = 2) -> decimal
+Munchausen.RandomData.Double(double minInclusive = 0, double maxInclusive = 1) -> double
+Munchausen.RandomData.Enum<TEnum>() -> TEnum
+Munchausen.RandomData.Guid() -> System.Guid
+Munchausen.RandomData.Int(int minInclusive = -2147483648, int maxInclusive = 2147483647) -> int
+Munchausen.RandomData.Long(long minInclusive = -9223372036854775808, long maxInclusive = 9223372036854775807) -> long
+Munchausen.RandomData.Pick<T>(params T[]! values) -> T
+Munchausen.RandomData.Pick<T>(System.Collections.Generic.IReadOnlyList<T>! values) -> T
+Munchausen.RandomData.Sample<T>(System.Collections.Generic.IReadOnlyList<T>! values, int count, bool replacement = false) -> System.Collections.Generic.IReadOnlyList<T>!
+Munchausen.RandomData.String(int length) -> string!
+Munchausen.RandomData.Weighted<T>(System.Collections.Generic.IReadOnlyList<Munchausen.WeightedValue<T>>! values) -> T
+Munchausen.VehicleData
+Munchausen.VehicleData.Make() -> string!
+Munchausen.VehicleData.Model() -> string!
+Munchausen.VehicleData.Model(string! make) -> string!
+Munchausen.VehicleData.Vin() -> string!
+Munchausen.VehicleData.Year() -> int
+Munchausen.WeightedValue<T>
+Munchausen.WeightedValue<T>.Value.get -> T
+Munchausen.WeightedValue<T>.Value.init -> void
+Munchausen.WeightedValue<T>.Weight.get -> double
+Munchausen.WeightedValue<T>.Weight.init -> void
+Munchausen.WeightedValue<T>.WeightedValue() -> void
+Munchausen.WeightedValue<T>.WeightedValue(T Value, double Weight) -> void
+Munchausen.GenerationContext.Generate<TModel>() -> TModel
+Munchausen.GenerationContext.Generate<TModel>(Munchausen.LieDefinition<TModel>! definition) -> TModel
+Munchausen.GenerationContext.GenerateMany<TModel>(int count) -> System.Collections.Generic.IReadOnlyList<TModel>!
+Munchausen.GenerationContext.GenerateMany<TModel>(Munchausen.LieDefinition<TModel>! definition, int count) -> System.Collections.Generic.IReadOnlyList<TModel>!
+Munchausen.InferenceConfidence
+Munchausen.InferenceConfidence.High = 0 -> Munchausen.InferenceConfidence
+Munchausen.InferenceConfidence.Low = 2 -> Munchausen.InferenceConfidence
+Munchausen.InferenceConfidence.Medium = 1 -> Munchausen.InferenceConfidence
+Munchausen.InferenceReport.DefinitionName.get -> string?
+Munchausen.InferenceReport.Diagnostics.get -> System.Collections.Generic.IReadOnlyList<Munchausen.LieDiagnostic!>!
+Munchausen.InferenceReport.IsComplete.get -> bool
+Munchausen.InferenceReport.Locale.get -> string!
+Munchausen.InferenceReport.Members.get -> System.Collections.Generic.IReadOnlyList<Munchausen.MemberInferenceReport!>!
+Munchausen.InferenceReport.ModelType.get -> System.Type!
+Munchausen.InferenceReport.ToText() -> string!
+Munchausen.InferenceSource
+Munchausen.InferenceSource.Attribute = 4 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.ChildDefinition = 8 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.CustomProvider = 5 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Derived = 1 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Explicit = 0 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Ignored = 3 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Preserved = 2 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Semantic = 6 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Type = 7 -> Munchausen.InferenceSource
+Munchausen.InferenceSource.Unsupported = 9 -> Munchausen.InferenceSource
+Munchausen.MemberInferenceReport
+Munchausen.MemberInferenceReport.Confidence.get -> Munchausen.InferenceConfidence?
+Munchausen.MemberInferenceReport.DerivationOrder.get -> int?
+Munchausen.MemberInferenceReport.Generator.get -> string!
+Munchausen.MemberInferenceReport.MemberPath.get -> string!
+Munchausen.MemberInferenceReport.OriginDefinition.get -> string?
+Munchausen.MemberInferenceReport.OverriddenRules.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Munchausen.MemberInferenceReport.Source.get -> Munchausen.InferenceSource

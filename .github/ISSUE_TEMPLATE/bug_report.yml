@@ -1,0 +1,41 @@
+name: Bug report
+description: Report a problem with Munchausen
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for filing a bug. The more reproducible the report, the faster the fix.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug, including what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: A minimal model plus the definition or call that triggers it. A seed makes it deterministic.
+      render: csharp
+    validations:
+      required: true
+  - type: input
+    id: package-version
+    attributes:
+      label: Munchausen version
+      placeholder: 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: dotnet-version
+    attributes:
+      label: .NET version
+      placeholder: net8.0
+    validations:
+      required: true
+  - type: textarea
+    id: anything-else
+    attributes:
+      label: Anything else?
+      description: Stack traces, logs, or context that might help.
