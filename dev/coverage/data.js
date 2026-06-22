@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782116060336,
+  "lastUpdate": 1782118650301,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Coverage": [
@@ -23,6 +23,45 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/ernestohs/Munchausen/commit/9a87786033c7f76541e76e3baf5c1ca39863facf"
         },
         "date": 1782116059496,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Line coverage",
+            "value": 88.4,
+            "unit": "%"
+          },
+          {
+            "name": "Branch coverage",
+            "value": 83.7,
+            "unit": "%"
+          },
+          {
+            "name": "Method coverage",
+            "value": 89.3,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ernesto@talos-lab.ai",
+            "name": "/dev/10x",
+            "username": "ernestohs"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "45fcd067510678ad96212c8473575aac6e3c9a33",
+          "message": "Update release (#14)",
+          "timestamp": "2026-06-22T02:56:45-06:00",
+          "tree_id": "6c78efda580ab357f5c8530720c13948304398f9",
+          "url": "https://github.com/ernestohs/Munchausen/commit/45fcd067510678ad96212c8473575aac6e3c9a33"
+        },
+        "date": 1782118649975,
         "tool": "customBiggerIsBetter",
         "benches": [
           {
