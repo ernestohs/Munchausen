@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782146390111,
+  "lastUpdate": 1782162775878,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Coverage": [
@@ -257,6 +257,45 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/ernestohs/Munchausen/commit/82cb700ca6fe5de929b46fcb6e8a1de550f0a8ca"
         },
         "date": 1782146389260,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Line coverage",
+            "value": 88.4,
+            "unit": "%"
+          },
+          {
+            "name": "Branch coverage",
+            "value": 83.5,
+            "unit": "%"
+          },
+          {
+            "name": "Method coverage",
+            "value": 89.3,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ernesto@talos-lab.ai",
+            "name": "/dev/10x",
+            "username": "ernestohs"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5449d26872a62f33852e1af1cc5c97bae6fc3b4b",
+          "message": "ci: GitFlow release pipeline with MinVer and conventional-commit drafts (#20)",
+          "timestamp": "2026-06-22T15:12:14-06:00",
+          "tree_id": "90352a69ffc953287e7a3393382f86a62d6d6cd5",
+          "url": "https://github.com/ernestohs/Munchausen/commit/5449d26872a62f33852e1af1cc5c97bae6fc3b4b"
+        },
+        "date": 1782162775012,
         "tool": "customBiggerIsBetter",
         "benches": [
           {
