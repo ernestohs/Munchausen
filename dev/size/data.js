@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782146391297,
+  "lastUpdate": 1782162777279,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Assembly size": [
@@ -202,6 +202,35 @@ window.BENCHMARK_DATA = {
           {
             "name": "Assembly size",
             "value": 129.5,
+            "unit": "KB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ernesto@talos-lab.ai",
+            "name": "/dev/10x",
+            "username": "ernestohs"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5449d26872a62f33852e1af1cc5c97bae6fc3b4b",
+          "message": "ci: GitFlow release pipeline with MinVer and conventional-commit drafts (#20)",
+          "timestamp": "2026-06-22T15:12:14-06:00",
+          "tree_id": "90352a69ffc953287e7a3393382f86a62d6d6cd5",
+          "url": "https://github.com/ernestohs/Munchausen/commit/5449d26872a62f33852e1af1cc5c97bae6fc3b4b"
+        },
+        "date": 1782162777260,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Assembly size",
+            "value": 130,
             "unit": "KB"
           }
         ]
