@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782140770912,
+  "lastUpdate": 1782142020646,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Munchausen benchmarks": [
@@ -162,6 +162,60 @@ window.BENCHMARK_DATA = {
             "value": 3388.2081838754507,
             "unit": "ns",
             "range": "± 8.57349247450997"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "8bc1bf6d67b9fe355c4dc6b155b9bf0921e42884",
+          "message": "Bump actions/setup-dotnet from 4 to 5 (#16)\n\nBumps [actions/setup-dotnet](https://github.com/actions/setup-dotnet) from 4 to 5.\n- [Release notes](https://github.com/actions/setup-dotnet/releases)\n- [Commits](https://github.com/actions/setup-dotnet/compare/v4...v5)\n\n---\nupdated-dependencies:\n- dependency-name: actions/setup-dotnet\n  dependency-version: '5'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-06-22T09:24:05-06:00",
+          "tree_id": "bd02dde2132c0c0a9dcfd478e2d26382ee182791",
+          "url": "https://github.com/ernestohs/Munchausen/commit/8bc1bf6d67b9fe355c4dc6b155b9bf0921e42884"
+        },
+        "date": 1782142020293,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.BuildWarm",
+            "value": 2513481.881119792,
+            "unit": "ns",
+            "range": "± 17462.17783144408"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCar",
+            "value": 1906.3602414449056,
+            "unit": "ns",
+            "range": "± 25.409891779498295"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCars",
+            "value": 1106075.6791666667,
+            "unit": "ns",
+            "range": "± 10521.371566597803"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCustomerWithCollection",
+            "value": 5876.441549682617,
+            "unit": "ns",
+            "range": "± 35.49993268711347"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.PrngThroughput",
+            "value": 3122.5273933410645,
+            "unit": "ns",
+            "range": "± 4.10619537942974"
           }
         ]
       }
