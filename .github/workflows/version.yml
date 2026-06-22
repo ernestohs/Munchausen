@@ -1,0 +1,51 @@
+name: Draft release
+
+# On every merge to master, compute the next stable version from conventional-commit
+# messages since the last tag and upsert a DRAFT GitHub release with generated notes.
+# Nothing ships here: publishing that draft (a manual click) creates the tag and fires
+# release.yml, which builds, packs, and pushes the package. That click is the only gate
+# on the irreversible nuget.org publish.
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: draft-release
+  cancel-in-progress: true
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Compute next version (conventional commits, no tag yet)
+        id: bump
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch
+          tag_prefix: v
+          dry_run: true          # decide the version only; the tag is created on publish
+
+      - name: Upsert the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.bump.outputs.new_tag }}
+        run: |
+          # Recreate the draft each run so it always reflects the latest version/notes.
+          # Untagged target means GitHub creates the tag at master HEAD when published.
+          if gh release view "$TAG" --json isDraft --jq .isDraft 2>/dev/null | grep -q true; then
+            gh release delete "$TAG" --yes
+          fi
+          gh release create "$TAG" \
+            --draft \
+            --target "$GITHUB_SHA" \
+            --title "$TAG" \
+            --generate-notes

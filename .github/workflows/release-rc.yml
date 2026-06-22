@@ -1,0 +1,65 @@
+name: Release candidate
+
+# Every push to a release/x.y branch publishes a prerelease package to nuget.org.
+# The version (e.g. 1.2.0-rc.1, then 1.2.0-rc.1.N for later commits) comes from the
+# 'vX.Y.0-rc.N' tag you push when cutting the branch, via MinVer. Consumers only get
+# these if they opt into prereleases, so this is a safe staging channel.
+
+on:
+  push:
+    branches: ['release/**']
+
+permissions:
+  contents: read
+  id-token: write          # OIDC token for nuget.org trusted publishing
+
+concurrency:
+  group: release-rc-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish-rc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release
+
+      - name: Pack
+        run: dotnet pack src/Munchausen/Munchausen.csproj --no-build --configuration Release --output artifacts
+
+      # Guard: refuse to publish a stable version from a release branch. If MinVer
+      # produced a non-prerelease version, the rc tag is missing or wrong — stop.
+      - name: Verify the package is a prerelease
+        run: |
+          if ls artifacts/Munchausen.*.nupkg | grep -qE 'Munchausen\.[0-9]+\.[0-9]+\.[0-9]+\.nupkg$'; then
+            echo "::error::Stable version on a release branch. Tag the branch vX.Y.0-rc.N first."
+            exit 1
+          fi
+          ls artifacts
+
+      - name: NuGet login (OIDC)
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push prerelease to nuget.org
+        run: >
+          dotnet nuget push "artifacts/*.nupkg" "artifacts/*.snupkg"
+          --source "https://api.nuget.org/v3/index.json"
+          --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}"
+          --skip-duplicate
