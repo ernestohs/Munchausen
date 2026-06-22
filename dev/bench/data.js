@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782116207065,
+  "lastUpdate": 1782118797663,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Munchausen benchmarks": [
@@ -54,6 +54,60 @@ window.BENCHMARK_DATA = {
             "value": 3384.705641233004,
             "unit": "ns",
             "range": "± 2.4333053231602486"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "ernesto@talos-lab.ai",
+            "name": "/dev/10x",
+            "username": "ernestohs"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "45fcd067510678ad96212c8473575aac6e3c9a33",
+          "message": "Update release (#14)",
+          "timestamp": "2026-06-22T02:56:45-06:00",
+          "tree_id": "6c78efda580ab357f5c8530720c13948304398f9",
+          "url": "https://github.com/ernestohs/Munchausen/commit/45fcd067510678ad96212c8473575aac6e3c9a33"
+        },
+        "date": 1782118797392,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.BuildWarm",
+            "value": 2478992.7434895835,
+            "unit": "ns",
+            "range": "± 10902.165917299235"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCar",
+            "value": 1873.0454896291096,
+            "unit": "ns",
+            "range": "± 14.881236733674871"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCars",
+            "value": 1079765.7821614584,
+            "unit": "ns",
+            "range": "± 5986.890329302844"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCustomerWithCollection",
+            "value": 5874.588126627604,
+            "unit": "ns",
+            "range": "± 59.57340374056493"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.PrngThroughput",
+            "value": 3377.438555908203,
+            "unit": "ns",
+            "range": "± 4.7903265962163095"
           }
         ]
       }
