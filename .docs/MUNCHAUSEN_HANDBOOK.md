@@ -28,6 +28,9 @@ The audience is contributors implementing, reviewing, testing, or extending
 Munchausen, plus consumers who need an authoritative description of v1.0
 behavior.
 
+For a runnable, copy-pasteable tour of every v1.0 feature, see the
+[Examples cookbook](EXAMPLES.md) and the `examples/Munchausen.Examples` project.
+
 Labels have precise meanings:
 
 - **Contract:** shipped v1.0 behavior or public API. Changes require normal
