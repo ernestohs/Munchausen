@@ -3,15 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
+    <!-- Example models declare plain non-nullable properties (as in the README)
+         and let Munchausen populate them, so CS8618 is not meaningful here. -->
+    <NoWarn>$(NoWarn);CS8618</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\Munchausen\Munchausen.csproj" />
-    <ProjectReference Include="..\Munchausen.TestModels\Munchausen.TestModels.csproj" />
   </ItemGroup>
 
 </Project>

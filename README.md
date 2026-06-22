@@ -83,6 +83,16 @@ IReadOnlyList<Customer> batch =
     Lie<Customer>.Generate(100, new GenerationOptions { Seed = 42 });
 ```
 
+## Examples
+
+A runnable tour of every feature lives in
+[`.docs/EXAMPLES.md`](.docs/EXAMPLES.md), backed by the console project under
+[`examples/Munchausen.Examples`](examples/Munchausen.Examples):
+
+```bash
+dotnet run --project examples/Munchausen.Examples
+```
+
 ## Definitions: customizing generation
 
 When you want control, define a reusable, immutable definition with `Lie.Define<T>()`.
