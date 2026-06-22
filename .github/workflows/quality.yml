@@ -110,6 +110,10 @@ jobs:
           output-file-path: artifacts/size.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           benchmark-data-dir-path: dev/size
+          # The coverage step above already fetched/checked out gh-pages and
+          # committed to it locally; re-fetching here is rejected as
+          # non-fast-forward. Reuse the local branch instead.
+          skip-fetch-gh-pages: true
           auto-push: ${{ github.event_name == 'push' }}
           save-data-file: ${{ github.event_name == 'push' }}
           summary-always: true
