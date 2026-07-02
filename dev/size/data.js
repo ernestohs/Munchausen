@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783031350247,
+  "lastUpdate": 1783031629761,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Assembly size": [
@@ -255,6 +255,35 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/ernestohs/Munchausen/commit/2dd1c52526ab45658da0e8180e6bfb505ac3928d"
         },
         "date": 1783031350227,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Assembly size",
+            "value": 130,
+            "unit": "KB"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "99162ed65dcfa526356205bd0f124fb8e284e49c",
+          "message": "Bump MinVer from 6.0.0 to 7.0.0 (#24)\n\n---\nupdated-dependencies:\n- dependency-name: MinVer\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: /dev/10x <ernesto@talos-lab.ai>",
+          "timestamp": "2026-07-02T16:32:58-06:00",
+          "tree_id": "7a8e95963a070f52b16e8d132dfeeb83a121e24f",
+          "url": "https://github.com/ernestohs/Munchausen/commit/99162ed65dcfa526356205bd0f124fb8e284e49c"
+        },
+        "date": 1783031629736,
         "tool": "customSmallerIsBetter",
         "benches": [
           {
