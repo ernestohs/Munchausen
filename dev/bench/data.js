@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782162929863,
+  "lastUpdate": 1783031478607,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Munchausen benchmarks": [
@@ -432,6 +432,60 @@ window.BENCHMARK_DATA = {
             "value": 3385.5826105390274,
             "unit": "ns",
             "range": "± 2.3802075351237413"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2dd1c52526ab45658da0e8180e6bfb505ac3928d",
+          "message": "Bump Microsoft.NET.Test.Sdk from 18.6.0 to 18.7.0 (#23)\n\n---\nupdated-dependencies:\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T16:28:13-06:00",
+          "tree_id": "75c2d93bbee79a9d7d02de20034f066a8e3a2f8c",
+          "url": "https://github.com/ernestohs/Munchausen/commit/2dd1c52526ab45658da0e8180e6bfb505ac3928d"
+        },
+        "date": 1783031477824,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.BuildWarm",
+            "value": 1365809.138671875,
+            "unit": "ns",
+            "range": "± 30451.45670801363"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCar",
+            "value": 1738.6600506646294,
+            "unit": "ns",
+            "range": "± 5.40097810777088"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCars",
+            "value": 1067627.473046875,
+            "unit": "ns",
+            "range": "± 4406.257307440712"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCustomerWithCollection",
+            "value": 5201.992113930838,
+            "unit": "ns",
+            "range": "± 6.248116491440992"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.PrngThroughput",
+            "value": 4273.486803690593,
+            "unit": "ns",
+            "range": "± 23.11873827845127"
           }
         ]
       }
