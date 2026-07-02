@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783031478607,
+  "lastUpdate": 1783031784019,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Munchausen benchmarks": [
@@ -486,6 +486,60 @@ window.BENCHMARK_DATA = {
             "value": 4273.486803690593,
             "unit": "ns",
             "range": "± 23.11873827845127"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "99162ed65dcfa526356205bd0f124fb8e284e49c",
+          "message": "Bump MinVer from 6.0.0 to 7.0.0 (#24)\n\n---\nupdated-dependencies:\n- dependency-name: MinVer\n  dependency-version: 7.0.0\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\nCo-authored-by: /dev/10x <ernesto@talos-lab.ai>",
+          "timestamp": "2026-07-02T16:32:58-06:00",
+          "tree_id": "7a8e95963a070f52b16e8d132dfeeb83a121e24f",
+          "url": "https://github.com/ernestohs/Munchausen/commit/99162ed65dcfa526356205bd0f124fb8e284e49c"
+        },
+        "date": 1783031783467,
+        "tool": "benchmarkdotnet",
+        "benches": [
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.BuildWarm",
+            "value": 2403567.5555245536,
+            "unit": "ns",
+            "range": "± 14837.55335173915"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCar",
+            "value": 1779.4454281670708,
+            "unit": "ns",
+            "range": "± 4.223718622328276"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCars",
+            "value": 1136006.2424479167,
+            "unit": "ns",
+            "range": "± 2104.0755686556404"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.GenerateCustomerWithCollection",
+            "value": 5882.828290499174,
+            "unit": "ns",
+            "range": "± 12.298798093352053"
+          },
+          {
+            "name": "Munchausen.Benchmarks.GenerationBenchmarks.PrngThroughput",
+            "value": 3387.7928994985728,
+            "unit": "ns",
+            "range": "± 5.25267658751397"
           }
         ]
       }
