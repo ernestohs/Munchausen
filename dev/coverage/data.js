@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782162775878,
+  "lastUpdate": 1783031348443,
   "repoUrl": "https://github.com/ernestohs/Munchausen",
   "entries": {
     "Coverage": [
@@ -296,6 +296,45 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/ernestohs/Munchausen/commit/5449d26872a62f33852e1af1cc5c97bae6fc3b4b"
         },
         "date": 1782162775012,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "Line coverage",
+            "value": 88.4,
+            "unit": "%"
+          },
+          {
+            "name": "Branch coverage",
+            "value": 83.5,
+            "unit": "%"
+          },
+          {
+            "name": "Method coverage",
+            "value": 89.3,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2dd1c52526ab45658da0e8180e6bfb505ac3928d",
+          "message": "Bump Microsoft.NET.Test.Sdk from 18.6.0 to 18.7.0 (#23)\n\n---\nupdated-dependencies:\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n- dependency-name: Microsoft.NET.Test.Sdk\n  dependency-version: 18.7.0\n  dependency-type: direct:production\n  update-type: version-update:semver-minor\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+          "timestamp": "2026-07-02T16:28:13-06:00",
+          "tree_id": "75c2d93bbee79a9d7d02de20034f066a8e3a2f8c",
+          "url": "https://github.com/ernestohs/Munchausen/commit/2dd1c52526ab45658da0e8180e6bfb505ac3928d"
+        },
+        "date": 1783031347617,
         "tool": "customBiggerIsBetter",
         "benches": [
           {
